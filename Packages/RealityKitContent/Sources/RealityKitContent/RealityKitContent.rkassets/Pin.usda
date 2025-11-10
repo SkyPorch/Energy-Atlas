@@ -1,0 +1,601 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.120.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Pin_Glow", "PinGlowLoop"]
+    float3 xformOp:scale = (0.2, 0.2, 0.2)
+    float3 xformOp:translate = (0, -0.04, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def Cylinder "Cylinder" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        reorder nameChildren = ["DefaultMaterial", "Sphere"]
+        uniform token axis = "Y"
+        double height = 0.3
+        rel material:binding = </Root/ScratchedMetallicPaint> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.01, 1, 0.01)
+        float3 xformOp:translate = (0, 0.05, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            prepend token outputs:surface.connect = </Root/Cylinder/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+
+        def Sphere "Sphere" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/GlossyBlackWoodPlank> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0.1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (8, 0.08, 8)
+            float3 xformOp:translate = (0, 0.15, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Cylinder/Sphere/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+            }
+        }
+
+        def Sphere "Sphere_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/GlossyBlackWoodPlank_1> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0.1
+            float2 ui:nodegraph:node:pos = (623.3884, 667.0663)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (7.99, 0.079900004, 7.99)
+            float3 xformOp:translate = (0, 0.15, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Cylinder/Sphere_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+                float opacity = 1
+            }
+        }
+    }
+
+    def "GlossyBlackWoodPlank" (
+        active = true
+        references = @GlossyBlackWoodPlank.usdz@
+    )
+    {
+        color3f inputs:Basecolor_Tint = (1, 0.23137255, 0.1882353) (
+            colorSpace = "srgb_texture"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-281.88013, -262.8136)
+                    float2 sizeInSubgraph = (160.5, 53)
+                    int stackingOrderInSubgraph = 2357
+                }
+            }
+        )
+        color3f inputs:High = (1, 0.58431375, 0) (
+            colorSpace = "srgb_texture"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-34.625427, -90.251945)
+                    int stackingOrderInSubgraph = 2343
+                }
+            }
+        )
+        color3f inputs:Highest = (1, 0.23137255, 0.1882353) (
+            colorSpace = "srgb_texture"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-36.60729, -30.774288)
+                    int stackingOrderInSubgraph = 2343
+                }
+            }
+        )
+        int inputs:IntensityValue = 0 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-31.421463, 39.885895)
+                    int stackingOrderInSubgraph = 2469
+                }
+            }
+        )
+        color3f inputs:Low = (0.33333334, 0.74509805, 0.9411765) (
+            colorSpace = "srgb_texture"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-34.32355, -208.57289)
+                    int stackingOrderInSubgraph = 2345
+                }
+            }
+        )
+        color3f inputs:Lowest = (0, 0.47843137, 1) (
+            colorSpace = "srgb_texture"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-35.95541, -268.6018)
+                    int stackingOrderInSubgraph = 2352
+                }
+            }
+        )
+        color3f inputs:Medium = (0.9764706, 0.9764706, 0.9764706) (
+            colorSpace = "lin_srgb"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-32.831688, -148.29024)
+                    int stackingOrderInSubgraph = 2347
+                }
+            }
+        )
+        float2 inputs:UV_Scale (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-725.2588, 351.55255)
+                    float2 sizeInSubgraph = (138.5, 53)
+                    int stackingOrderInSubgraph = 2358
+                }
+            }
+        )
+
+        over "Multiply_1"
+        {
+            color3f inputs:in1.connect = </Root/GlossyBlackWoodPlank/Switch.outputs:out>
+        }
+
+        def Shader "Switch"
+        {
+            uniform token info:id = "ND_switch_color3I"
+            color3f inputs:in1.connect = </Root/GlossyBlackWoodPlank.inputs:Lowest>
+            color3f inputs:in2.connect = </Root/GlossyBlackWoodPlank.inputs:Low>
+            color3f inputs:in3.connect = </Root/GlossyBlackWoodPlank.inputs:Medium>
+            color3f inputs:in4.connect = </Root/GlossyBlackWoodPlank.inputs:High>
+            color3f inputs:in5.connect = </Root/GlossyBlackWoodPlank.inputs:Highest>
+            color3f inputs:in6
+            color3f inputs:in7
+            color3f inputs:in8
+            color3f inputs:in9
+            color3f inputs:in10
+            int inputs:which.connect = </Root/GlossyBlackWoodPlank.inputs:IntensityValue>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (151.68579, -78.264755)
+            int ui:nodegraph:node:stackingOrder = 2342
+        }
+
+        over "Swizzle_1"
+        {
+            int ui:nodegraph:node:stackingOrder = 2347
+        }
+
+        over "BaseColor"
+        {
+            int ui:nodegraph:node:stackingOrder = 2344
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:realworldtilesize"]
+        }
+
+        over "Swizzle"
+        {
+            int ui:nodegraph:node:stackingOrder = 2348
+        }
+
+        over "PreviewSurface"
+        {
+            float inputs:clearcoat
+            float inputs:clearcoatRoughness
+            color3f inputs:emissiveColor.connect = </Root/GlossyBlackWoodPlank/Multiply.outputs:out>
+            float inputs:ior
+            float inputs:occlusion
+            float inputs:opacityThreshold
+            int ui:nodegraph:node:stackingOrder = 2351
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:opacity", "Advanced", "inputs:emissiveColor"]
+        }
+
+        over "Normal"
+        {
+            float2 ui:nodegraph:node:pos = (-309.2841, 832.4934)
+            int ui:nodegraph:node:stackingOrder = 2355
+        }
+
+        over "multiply"
+        {
+            int ui:nodegraph:node:stackingOrder = 2356
+        }
+
+        over "add"
+        {
+            int ui:nodegraph:node:stackingOrder = 2357
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_color3FA"
+            color3f inputs:in1.connect = </Root/GlossyBlackWoodPlank/GlowColor.outputs:out>
+            float inputs:in2.connect = </Root/GlossyBlackWoodPlank/GlowConstant.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (548.21533, 637.55676)
+            int ui:nodegraph:node:stackingOrder = 2421
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:out"]
+        }
+
+        def Shader "GlowColor"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (0.57414854, 0.5741624, 0.574155) (
+                colorSpace = "srgb_texture"
+            )
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (348.8208, 609.7091)
+            int ui:nodegraph:node:stackingOrder = 2473
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:value", "outputs:out", "inputs:value"]
+        }
+
+        def Shader "GlowConstant"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 0
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (355.78174, 675.3263)
+            int ui:nodegraph:node:stackingOrder = 2476
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:value"]
+        }
+    }
+
+    def "ScratchedMetallicPaint" (
+        active = true
+        references = @ScratchedMetallicPaint.usdz@
+    )
+    {
+    }
+
+    def "GlossyBlackWoodPlank_1" (
+        active = true
+        references = @GlossyBlackWoodPlank.usdz@
+    )
+    {
+        color3f inputs:Basecolor_Tint = (1, 0.23137255, 0.1882353) (
+            colorSpace = "srgb_texture"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-281.88013, -262.8136)
+                    float2 sizeInSubgraph = (160.5, 53)
+                    int stackingOrderInSubgraph = 2357
+                }
+            }
+        )
+        color3f inputs:High = (1, 0.58431375, 0) (
+            colorSpace = "srgb_texture"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-34.625427, -90.251945)
+                    int stackingOrderInSubgraph = 2343
+                }
+            }
+        )
+        color3f inputs:Highest = (1, 0.23137255, 0.1882353) (
+            colorSpace = "srgb_texture"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-36.60729, -30.774288)
+                    int stackingOrderInSubgraph = 2343
+                }
+            }
+        )
+        int inputs:IntensityValue = 0 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-31.421463, 39.885895)
+                    int stackingOrderInSubgraph = 2469
+                }
+            }
+        )
+        color3f inputs:Low = (0.33333334, 0.74509805, 0.9411765) (
+            colorSpace = "srgb_texture"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-34.32355, -208.57289)
+                    int stackingOrderInSubgraph = 2345
+                }
+            }
+        )
+        color3f inputs:Lowest = (0, 0.47843137, 1) (
+            colorSpace = "srgb_texture"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-35.95541, -268.6018)
+                    int stackingOrderInSubgraph = 2352
+                }
+            }
+        )
+        color3f inputs:Medium = (0.9764706, 0.9764706, 0.9764706) (
+            colorSpace = "lin_srgb"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-32.831688, -148.29024)
+                    int stackingOrderInSubgraph = 2347
+                }
+            }
+        )
+        float2 inputs:UV_Scale (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-725.2588, 351.55255)
+                    float2 sizeInSubgraph = (138.5, 53)
+                    int stackingOrderInSubgraph = 2358
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/GlossyBlackWoodPlank_1/PreviewSurface.outputs:out>
+        float2 ui:nodegraph:node:pos = (594.98083, 620.47784)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        over "Multiply_1"
+        {
+            color3f inputs:in1.connect = </Root/GlossyBlackWoodPlank_1/Switch.outputs:out>
+        }
+
+        def Shader "Switch"
+        {
+            uniform token info:id = "ND_switch_color3I"
+            color3f inputs:in1.connect = </Root/GlossyBlackWoodPlank_1.inputs:Lowest>
+            color3f inputs:in2.connect = </Root/GlossyBlackWoodPlank_1.inputs:Low>
+            color3f inputs:in3.connect = </Root/GlossyBlackWoodPlank_1.inputs:Medium>
+            color3f inputs:in4.connect = </Root/GlossyBlackWoodPlank_1.inputs:High>
+            color3f inputs:in5.connect = </Root/GlossyBlackWoodPlank_1.inputs:Highest>
+            color3f inputs:in6
+            color3f inputs:in7
+            color3f inputs:in8
+            color3f inputs:in9
+            color3f inputs:in10
+            int inputs:which.connect = </Root/GlossyBlackWoodPlank_1.inputs:IntensityValue>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (151.68579, -78.264755)
+            int ui:nodegraph:node:stackingOrder = 2342
+        }
+
+        over "Swizzle_1"
+        {
+            int ui:nodegraph:node:stackingOrder = 2347
+        }
+
+        over "BaseColor"
+        {
+            int ui:nodegraph:node:stackingOrder = 2344
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:realworldtilesize"]
+        }
+
+        over "Swizzle"
+        {
+            int ui:nodegraph:node:stackingOrder = 2348
+        }
+
+        over "PreviewSurface"
+        {
+            float inputs:clearcoat
+            float inputs:clearcoatRoughness
+            color3f inputs:emissiveColor.connect = </Root/GlossyBlackWoodPlank_1/Multiply.outputs:out>
+            float inputs:ior
+            float inputs:occlusion
+            float inputs:opacityThreshold
+            int ui:nodegraph:node:stackingOrder = 2351
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:opacity", "Advanced", "inputs:emissiveColor"]
+        }
+
+        over "Normal"
+        {
+            float2 ui:nodegraph:node:pos = (-309.2841, 832.4934)
+            int ui:nodegraph:node:stackingOrder = 2355
+        }
+
+        over "multiply"
+        {
+            int ui:nodegraph:node:stackingOrder = 2356
+        }
+
+        over "add"
+        {
+            int ui:nodegraph:node:stackingOrder = 2357
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_color3FA"
+            color3f inputs:in1.connect = </Root/GlossyBlackWoodPlank_1/GlowColor.outputs:out>
+            float inputs:in2.connect = </Root/GlossyBlackWoodPlank_1/GlowConstant.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (548.21533, 637.55676)
+            int ui:nodegraph:node:stackingOrder = 2421
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:out"]
+        }
+
+        def Shader "GlowColor"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (0.57414854, 0.5741624, 0.574155) (
+                colorSpace = "srgb_texture"
+            )
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (348.8208, 609.7091)
+            int ui:nodegraph:node:stackingOrder = 2487
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:value", "outputs:out", "inputs:value"]
+        }
+
+        def Shader "GlowConstant"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 0.25
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (339.0026, 677.82465)
+            int ui:nodegraph:node:stackingOrder = 2493
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:value"]
+        }
+    }
+
+    def RealityKitTimeline "Pin_Glow"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Hide"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "5669F8CC-D28C-4483-9F09-9FB6FBB4C818"
+                double startTime = 0.0027263300915331807
+                rel target = </Root/Cylinder/Sphere>
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "default"
+                }
+            }
+
+            def RealityKitAction "Show"
+            {
+                string actionKind = "show"
+                int blendLayer = 300
+                double duration = 1
+                uniform token info:id = "5D51D91B-44E9-4289-90F2-12F60097D0ED"
+                double startTime = 1.0027263301915332
+                rel target = </Root/Cylinder/Sphere>
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "default"
+                }
+            }
+        }
+    }
+
+    def RealityKitTimeline "PinGlowLoop"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 2.0027263301915332
+                uniform token info:id = "D88C27CA-7957-4C10-A8C5-13A592821001"
+                double loopCount = 0
+                double startTime = 0
+                rel timeline = </Root/Pin_Glow>
+            }
+        }
+    }
+
+    def RealityKitComponent "RCP_BehaviorsContainer"
+    {
+        rel behaviors = </Root/OnNotification>
+        uniform token info:id = "RCP.BehaviorsContainer"
+    }
+
+    def Preliminary_Behavior "OnNotification"
+    {
+        rel actions = </Root/OnNotification/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "IsSelected"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/PinGlowLoop>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def RealityKitComponent "InputTarget"
+    {
+        uniform token info:id = "RealityKit.InputTarget"
+    }
+
+    def RealityKitComponent "Collider"
+    {
+        uint group = 1
+        uniform token info:id = "RealityKit.Collider"
+        uint mask = 4294967295
+        token type = "Default"
+
+        def RealityKitStruct "Shape"
+        {
+            float3 extent = (0.016, 0.30800003, 0.016)
+            float height = 0.30800003
+            float radius = 0.008
+            token shapeType = "Capsule"
+
+            def RealityKitStruct "pose"
+            {
+                float3 position = (0, 0.053999998, 0)
+            }
+        }
+    }
+}
+

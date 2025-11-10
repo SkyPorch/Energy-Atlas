@@ -1,0 +1,506 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.120.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root" (
+    customData = {
+        float3 rotationEulerHint = (4.7123885, 0, 0)
+    }
+)
+{
+    reorder nameChildren = ["SteamTiming", "SteamTimingLoop"]
+    quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+    float3 xformOp:scale = (0.1, 0.1, 0.1)
+    float3 xformOp:translate = (0, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def "CoolingTowers" (
+        active = true
+        references = @CoolingTowers.usdz@
+    )
+    {
+        reorder nameChildren = ["CoolingTower_Short", "_materials", "CoolingTower_Medium", "Camera", "CoolingTower_Tall", "env_light", "TallSteam", "MediumSteam"]
+        float3 xformOp:scale = (0.1, 0.1, 0.1)
+        float3 xformOp:translate = (0.30040738, -1.1920929e-7, 0.5508368)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "CoolingTower_Medium" (
+            customData = {
+                float3 rotationEulerHint = (0, 0, 0)
+            }
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (5.082015037536621, -4.344563007354736, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        over "CoolingTower_Short"
+        {
+            reorder nameChildren = ["ShortSteam", "CoolingTower_Short_002"]
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            double3 xformOp:translate = (7.321178436279297, 2.103807210922241, 0.0000017881394569485565)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cylinder "ShortSteam" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/CoolingTowers/CoolingTower_Short/ShortSteam/DefaultMaterial>
+                double radius = 0.1
+                float2 ui:nodegraph:node:pos = (60, 60)
+                int ui:nodegraph:node:stackingOrder = 3
+                quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
+                float3 xformOp:scale = (23, 0.099999964, 23)
+                float3 xformOp:translate = (0, 0, 6.45)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </Root/CoolingTowers/CoolingTower_Short/ShortSteam/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+
+                def RealityKitComponent "VFXEmitter"
+                {
+                    uniform token info:id = "RealityKit.VFXEmitter"
+
+                    def RealityKitStruct "currentState"
+                    {
+                        token birthDirection = "Normal"
+                        token birthLocation = "Surface"
+                        float3 emissionDirection = (0, 1, 0)
+                        double emissionDuration = 0.2
+                        double emissionDurationVariation = 0
+                        token emitterShape = "Plane"
+                        double idleDuration = 2
+                        double idleDurationVariation = 0
+                        bool isLocal = 0
+                        bool isSpawningEnabled = 0
+                        bool loops = 1
+                        float particleSpeed = 0.25
+                        float particleSpeedVariation = 0.1
+                        float3 shapeSize = (0.05, 0.01, 0.05)
+                        bool spawnInheritParentColor = 0
+                        token spawnOccasion = "OnDeath"
+                        float spawnSpreadFactor = 0
+                        float spawnSpreadFactorVariation = 0
+                        float spawnVelocityFactor = 1
+                        double warmupDuration = 0
+
+                        def RealityKitStruct "mainEmitter"
+                        {
+                            float3 acceleration = (0, 0, 0)
+                            token animationRepeatMode = "Looping"
+                            token billboardMode = "Billboard"
+                            float birthRate = 50
+                            float birthRateVariation = 0
+                            token blendMode = "Alpha"
+                            float colorEvolutionPower = 1
+                            int64 columnCount = 4
+                            float dampingFactor = 0
+                            float4 endColorA = (0.0013309671, 0.03458923, 1, 1)
+                            float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                            float frameRate = 0
+                            float frameRateVariation = 0
+                            int64 initialFrame = 2
+                            int64 initialFrameVariation = 6
+                            bool isAnimated = 1
+                            bool isLightingEnabled = 0
+                            float noiseAnimationSpeed = 0
+                            float noiseScale = 1
+                            float noiseStrength = 0.5
+                            token opacityOverLife = "LinearFadeOut"
+                            float particleAngle = 0
+                            float particleAngleVariation = 0
+                            float particleAngularVelocity = 0
+                            float particleAngularVelocityVariation = 1
+                            asset particleImage = @ParticleEmitterPresetTextures/dustsheet.exr@
+                            double particleLifeSpan = 0.5
+                            double particleLifeSpanVariation = 1
+                            float particleMass = 1
+                            float particleMassVariation = 0.8
+                            float particleSize = 0.01
+                            float particleSizeVariation = 0
+                            float3 radialGravityCenter = (0, -0.1, 0)
+                            float radialGravityStrength = -0.1
+                            int64 rowCount = 4
+                            float sizeMultiplierAtEndOfLifespan = 8
+                            float sizeMultiplierAtEndOfLifespanPower = 0.2
+                            token sortOrder = "DecreasingDepth"
+                            float spreadingAngle = 0
+                            float4 startColorA = (0.9999908, 1, 1, 1)
+                            float4 startColorB = (0.8304888, 0.83053297, 0.8305093, 1)
+                            float stretchFactor = 0
+                            bool useEndColor = 0
+                            bool useEndColorRange = 0
+                            bool useStartColorRange = 1
+                            float3 vortexDirection = (0, 1, 0)
+                            float vortexStrength = 0
+                        }
+
+                        def RealityKitStruct "spawnedEmitter"
+                        {
+                        }
+                    }
+                }
+            }
+        }
+
+        def Cylinder "TallSteam" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/CoolingTowers/TallSteam/DefaultMaterial>
+            double radius = 0.1
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (0.70710677, 0.7071067, 0, 0)
+            float3 xformOp:scale = (37, 0.1, 37)
+            float3 xformOp:translate = (0, 9.029197e-7, 14.9)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/CoolingTowers/TallSteam/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitComponent "VFXEmitter"
+            {
+                uniform token info:id = "RealityKit.VFXEmitter"
+
+                def RealityKitStruct "currentState"
+                {
+                    token birthDirection = "Normal"
+                    token birthLocation = "Surface"
+                    float3 emissionDirection = (0, 1, 0)
+                    double emissionDuration = 5
+                    double emissionDurationVariation = 0
+                    token emitterShape = "Plane"
+                    double idleDuration = 2
+                    double idleDurationVariation = 0
+                    bool isLocal = 0
+                    bool isSpawningEnabled = 0
+                    bool loops = 1
+                    float particleSpeed = 0.2
+                    float particleSpeedVariation = 0.1
+                    float3 shapeSize = (0.05, 0.01, 0.05)
+                    bool spawnInheritParentColor = 0
+                    token spawnOccasion = "OnDeath"
+                    float spawnSpreadFactor = 0
+                    float spawnSpreadFactorVariation = 0
+                    float spawnVelocityFactor = 1
+                    double warmupDuration = 0
+
+                    def RealityKitStruct "mainEmitter"
+                    {
+                        float3 acceleration = (0, 0, 0)
+                        token animationRepeatMode = "Looping"
+                        token billboardMode = "Billboard"
+                        float birthRate = 50
+                        float birthRateVariation = 0
+                        token blendMode = "Alpha"
+                        float colorEvolutionPower = 1
+                        int64 columnCount = 4
+                        float dampingFactor = 0
+                        float4 endColorA = (0.0013309671, 0.03458923, 1, 1)
+                        float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                        float frameRate = 0
+                        float frameRateVariation = 0
+                        int64 initialFrame = 2
+                        int64 initialFrameVariation = 6
+                        bool isAnimated = 1
+                        bool isLightingEnabled = 0
+                        float noiseAnimationSpeed = 0
+                        float noiseScale = 1
+                        float noiseStrength = 0.5
+                        token opacityOverLife = "LinearFadeOut"
+                        float particleAngle = 0
+                        float particleAngleVariation = 0
+                        float particleAngularVelocity = 0
+                        float particleAngularVelocityVariation = 1
+                        asset particleImage = @ParticleEmitterPresetTextures/dustsheet.exr@
+                        double particleLifeSpan = 0.2
+                        double particleLifeSpanVariation = 1
+                        float particleMass = 1
+                        float particleMassVariation = 0.8
+                        float particleSize = 0.01
+                        float particleSizeVariation = 0
+                        float3 radialGravityCenter = (0, -0.1, 0)
+                        float radialGravityStrength = -0.1
+                        int64 rowCount = 4
+                        float sizeMultiplierAtEndOfLifespan = 8
+                        float sizeMultiplierAtEndOfLifespanPower = 0.2
+                        token sortOrder = "DecreasingDepth"
+                        float spreadingAngle = 0
+                        float4 startColorA = (0.9999908, 1, 1, 1)
+                        float4 startColorB = (0.8304888, 0.83053297, 0.8305093, 1)
+                        float stretchFactor = 0
+                        bool useEndColor = 0
+                        bool useEndColorRange = 0
+                        bool useStartColorRange = 1
+                        float3 vortexDirection = (0, 1, 0)
+                        float vortexStrength = 0
+                    }
+
+                    def RealityKitStruct "spawnedEmitter"
+                    {
+                    }
+                }
+            }
+        }
+
+        def Cylinder "MediumSteam" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["DefaultMaterial", "VFXEmitter"]
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/CoolingTowers/MediumSteam/DefaultMaterial>
+            double radius = 0.1
+            float2 ui:nodegraph:node:pos = (40, 40)
+            int ui:nodegraph:node:stackingOrder = 2
+            quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
+            float3 xformOp:scale = (29, 0.09999999, 29)
+            float3 xformOp:translate = (5.08202, -4.34456, 9.95)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/CoolingTowers/MediumSteam/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitComponent "VFXEmitter"
+            {
+                uniform token info:id = "RealityKit.VFXEmitter"
+
+                def RealityKitStruct "currentState"
+                {
+                    token birthDirection = "Normal"
+                    token birthLocation = "Surface"
+                    float3 emissionDirection = (0, 1, 0)
+                    double emissionDuration = 5
+                    double emissionDurationVariation = 0
+                    token emitterShape = "Plane"
+                    double idleDuration = 2
+                    double idleDurationVariation = 0
+                    bool isLocal = 0
+                    bool isSpawningEnabled = 0
+                    bool loops = 1
+                    float particleSpeed = 0.2
+                    float particleSpeedVariation = 0.1
+                    float3 shapeSize = (0.05, 0.01, 0.05)
+                    bool spawnInheritParentColor = 0
+                    token spawnOccasion = "OnDeath"
+                    float spawnSpreadFactor = 0
+                    float spawnSpreadFactorVariation = 0
+                    float spawnVelocityFactor = 1
+                    double warmupDuration = 0
+
+                    def RealityKitStruct "mainEmitter"
+                    {
+                        float3 acceleration = (0, 0, 0)
+                        token animationRepeatMode = "Looping"
+                        token billboardMode = "Billboard"
+                        float birthRate = 50
+                        float birthRateVariation = 0
+                        token blendMode = "Alpha"
+                        float colorEvolutionPower = 1
+                        int64 columnCount = 4
+                        float dampingFactor = 0
+                        float4 endColorA = (0.0013309671, 0.03458923, 1, 1)
+                        float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                        float frameRate = 0
+                        float frameRateVariation = 0
+                        int64 initialFrame = 2
+                        int64 initialFrameVariation = 6
+                        bool isAnimated = 1
+                        bool isLightingEnabled = 0
+                        float noiseAnimationSpeed = 0
+                        float noiseScale = 1
+                        float noiseStrength = 0.5
+                        token opacityOverLife = "LinearFadeOut"
+                        float particleAngle = 0
+                        float particleAngleVariation = 0
+                        float particleAngularVelocity = 0
+                        float particleAngularVelocityVariation = 1
+                        asset particleImage = @ParticleEmitterPresetTextures/dustsheet.exr@
+                        double particleLifeSpan = 0.2
+                        double particleLifeSpanVariation = 1
+                        float particleMass = 1
+                        float particleMassVariation = 0.8
+                        float particleSize = 0.01
+                        float particleSizeVariation = 0
+                        float3 radialGravityCenter = (0, -0.1, 0)
+                        float radialGravityStrength = -0.1
+                        int64 rowCount = 4
+                        float sizeMultiplierAtEndOfLifespan = 8
+                        float sizeMultiplierAtEndOfLifespanPower = 0.2
+                        token sortOrder = "DecreasingDepth"
+                        float spreadingAngle = 0
+                        float4 startColorA = (0.9999908, 1, 1, 1)
+                        float4 startColorB = (0.8304888, 0.83053297, 0.8305093, 1)
+                        float stretchFactor = 0
+                        bool useEndColor = 0
+                        bool useEndColorRange = 0
+                        bool useStartColorRange = 1
+                        float3 vortexDirection = (0, 1, 0)
+                        float vortexStrength = 0
+                    }
+
+                    def RealityKitStruct "spawnedEmitter"
+                    {
+                    }
+                }
+            }
+        }
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            rel behaviors = </Root/CoolingTowers/OnAddedToScene>
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+
+        def Preliminary_Behavior "OnAddedToScene"
+        {
+            rel actions = </Root/CoolingTowers/OnAddedToScene/Action>
+            uniform bool exclusive
+            rel triggers = </Root/CoolingTowers/OnAddedToScene/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/CoolingTowers>
+                token info:id = "SceneTransition"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = None
+                rel animationLibraryKey = None
+                rel animationLibraryKeyOverrideKey = </Root/CoolingTowers/OnAddedToScene/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
+    }
+
+    def RealityKitTimeline "SteamTiming"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Disable_Entity"
+            {
+                string actionKind = "disable"
+                double duration = 0
+                uniform token info:id = "D563D5C1-737F-4E1A-B281-C1348F278E08"
+                double startTime = 0
+                rel target = </Root/CoolingTowers/MediumSteam>
+            }
+
+            def RealityKitAction "Enable_Entity"
+            {
+                string actionKind = "enable"
+                double duration = 0
+                uniform token info:id = "EFFD92D2-185D-43F2-B7D8-CC8714122070"
+                double startTime = 1
+                rel target = </Root/CoolingTowers/MediumSteam>
+            }
+
+            def RealityKitAction "Disable_Entity2"
+            {
+                string actionKind = "disable"
+                double duration = 0
+                uniform token info:id = "A75201EA-AE1A-48DE-92B5-4C13E5097657"
+                double startTime = 5.002047242831108
+                rel target = </Root/CoolingTowers/MediumSteam>
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Disable_Entity"
+            {
+                string actionKind = "disable"
+                uniform token info:id = "88692DD6-EE49-4CE6-8518-E6E316BBB6F0"
+                double startTime = 0.0008023648648648649
+                rel target = </Root/CoolingTowers/CoolingTower_Short/ShortSteam>
+            }
+
+            def RealityKitAction "Enable_Entity"
+            {
+                string actionKind = "enable"
+                uniform token info:id = "82125B95-ED77-415F-B06A-17AABB814880"
+                double startTime = 2
+                rel target = </Root/CoolingTowers/CoolingTower_Short>
+            }
+
+            def RealityKitAction "Disable_Entity2"
+            {
+                string actionKind = "disable"
+                uniform token info:id = "27D6D609-B07B-4799-8DB7-94F318AC0FF7"
+                double startTime = 5.0044903062745725
+                rel target = </Root/CoolingTowers/CoolingTower_Short/ShortSteam>
+            }
+        }
+    }
+
+    def RealityKitTimeline "SteamTimingLoop"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 5.0044903062745725
+                uniform token info:id = "9C6B372D-452F-49BD-89B4-2907AA9854A7"
+                double loopCount = 0
+                double startTime = 0.1
+                rel timeline = </Root/SteamTiming>
+            }
+        }
+    }
+}
+

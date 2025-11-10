@@ -1,0 +1,283 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.120.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def "Earth" (
+        active = true
+        references = @Earth.usdz@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "geom" (
+            variants = {
+                string styles = "stylized"
+            }
+        )
+        {
+        }
+    }
+
+    def "Factory" (
+        active = true
+        references = @Factory.usda@
+    )
+    {
+        float3 xformOp:scale = (0.5, 0.5, 0.5)
+        float3 xformOp:translate = (0.17321, 0, -0.1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "PowerLines" (
+        active = true
+        references = @PowerLines.usda@
+    )
+    {
+        float3 xformOp:scale = (0.03, 0.03, 0.03)
+        float3 xformOp:translate = (0, 0, 0.2)
+    }
+
+    def "CoolingTowers" (
+        active = true
+        references = @CoolingTowers.usda@
+    )
+    {
+        float3 xformOp:scale = (0.03, 0.03, 0.03)
+        float3 xformOp:translate = (-0.17321, -0.015, -0.1)
+    }
+
+    def RealityKitComponent "RCP_BehaviorsContainer"
+    {
+        rel behaviors = </Root/OnAddedToScene>
+        uniform token info:id = "RCP.BehaviorsContainer"
+    }
+
+    def RealityKitTimeline "Orbit"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track3", "Track4", "Track5", "Track6", "Track7", "Track8"]
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Orbit"
+            {
+                string actionKind = "orbit"
+                float3 axis = (0, 1, 0)
+                int blendLayer = 300
+                double duration = 97
+                uniform token info:id = "819523FB-9ACA-4F24-802A-74EDADCE0AAB"
+                token orbitDirection = "counterClockwise"
+                rel pivotEntity = </Root/Earth>
+                float revolutions = 10
+                double startTime = 0
+                rel target = </Root/Factory>
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Orbit"
+            {
+                string actionKind = "orbit"
+                float3 axis = (0, 1, 0)
+                int blendLayer = 300
+                double duration = 97
+                uniform token info:id = "819523FB-9ACA-4F24-802A-74EDADCE0AAB"
+                token orbitDirection = "counterClockwise"
+                rel pivotEntity = </Root/Earth>
+                float revolutions = 10
+                double startTime = 0
+                rel target = </Root/PowerLines>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+
+        def RealityKitTrack "Track3"
+        {
+            def RealityKitAction "Orbit"
+            {
+                string actionKind = "orbit"
+                float3 axis = (0, 1, 0)
+                int blendLayer = 300
+                double duration = 97
+                uniform token info:id = "819523FB-9ACA-4F24-802A-74EDADCE0AAB"
+                token orbitDirection = "counterClockwise"
+                rel pivotEntity = </Root/Earth>
+                float revolutions = 10
+                double startTime = 0
+                rel target = </Root/CoolingTowers>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+            }
+        }
+
+        def RealityKitTrack "Track4"
+        {
+            reorder nameChildren = ["Spin", "Spin_1"]
+            def RealityKitAction "Spin"
+            {
+                string actionKind = "spin"
+                int blendLayer = 400
+                double duration = 97
+                uniform token info:id = "72F7AEED-E87F-460B-ABD6-886A882F9DA9"
+                float revolutions = 10
+                double startTime = 0
+                rel target = </Root/Factory>
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "linear"
+                }
+            }
+        }
+
+        def RealityKitTrack "Track5"
+        {
+            def RealityKitAction "Spin"
+            {
+                string actionKind = "spin"
+                int blendLayer = 400
+                double duration = 97
+                uniform token info:id = "72F7AEED-E87F-460B-ABD6-886A882F9DA9"
+                float revolutions = 10
+                double startTime = 0
+                rel target = </Root/PowerLines>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "linear"
+                }
+            }
+        }
+
+        def RealityKitTrack "Track6"
+        {
+            def RealityKitAction "Spin"
+            {
+                string actionKind = "spin"
+                int blendLayer = 400
+                double duration = 97
+                uniform token info:id = "72F7AEED-E87F-460B-ABD6-886A882F9DA9"
+                float3 localAxis = (0, 0, 1)
+                float revolutions = 10
+                double startTime = 0
+                rel target = </Root/CoolingTowers>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "linear"
+                }
+            }
+        }
+
+        def RealityKitTrack "Track7"
+        {
+            def RealityKitAction "Spin"
+            {
+                string actionKind = "spin"
+                int blendLayer = 400
+                double duration = 97
+                uniform token info:id = "571B3CEC-51A1-41D6-B226-E0AF8CAB1B34"
+                float revolutions = 10
+                double startTime = 0
+                rel target = </Root/Earth>
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "easeInOut"
+                }
+            }
+        }
+
+        def RealityKitTrack "Track8"
+        {
+            def RealityKitAction "Play_Audio"
+            {
+                string actionKind = "audio"
+                string audioResourceName = "Energy_Visualizer_Intro.m4a"
+                bool controlPlayback = 1
+                double duration = 97.6236875
+                uniform token info:id = "65CF7FF2-C803-463C-9427-1C4121190657"
+                double startTime = 0
+                rel target = </Root>
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+        }
+    }
+
+    def Preliminary_Behavior "OnAddedToScene"
+    {
+        rel actions = </Root/OnAddedToScene/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnAddedToScene/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            token info:id = "SceneTransition"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Orbit>
+            rel animationLibraryKeyOverrideKey = </Root/OnAddedToScene/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def RealityKitComponent "AudioLibrary"
+    {
+        uniform token info:id = "RealityKit.AudioLibrary"
+
+        def RealityKitDict "resources"
+        {
+            string[] keys = ["Energy_Visualizer_Intro.m4a"]
+            rel values = </Root/Energy_Visualizer_Intro_m4a>
+        }
+    }
+
+    def RealityKitComponent "AudioMixGroups"
+    {
+        uniform token info:id = "RealityKit.AudioMixGroups"
+
+        def RealityKitAudioMixGroup "MixGroup"
+        {
+            float gain = 0
+            bool mute = 0
+            float speed = 1
+        }
+    }
+
+    def RealityKitAudioFile "Energy_Visualizer_Intro_m4a"
+    {
+        uniform asset file = @Energy_Visualizer_Intro.m4a@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitComponent "SpatialAudio"
+    {
+        uniform token info:id = "RealityKit.SpatialAudio"
+        float rolloffFactor = 0
+    }
+}
+

@@ -1,0 +1,138 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.120.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Cylinder", "IntensityColor"]
+    float3 xformOp:scale = (0.1, 0.1, 0.1)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def Cylinder "Cylinder" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.7000000000000001
+        rel material:binding = </Root/IntensityColor> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.02
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, -0.04, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            prepend token outputs:surface.connect = </Root/Cylinder/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Material "IntensityColor"
+    {
+        token outputs:mtlx:surface.connect = </Root/IntensityColor/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (335.25, 100.5)
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            color3f inputs:diffuseColor.connect = </Root/IntensityColor/Switch.outputs:out>
+            float inputs:metallic
+            float3 inputs:normal
+            float inputs:opacity
+            float inputs:roughness
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (-52.88672, 134.53125)
+            int ui:nodegraph:node:stackingOrder = 17
+        }
+
+        def Shader "Switch"
+        {
+            uniform token info:id = "ND_switch_color3"
+            color3f inputs:in1.connect = </Root/IntensityColor/Lowest.outputs:out>
+            color3f inputs:in2.connect = </Root/IntensityColor/Lower.outputs:out>
+            color3f inputs:in3.connect = </Root/IntensityColor/Medium.outputs:out>
+            color3f inputs:in4.connect = </Root/IntensityColor/High.outputs:out>
+            color3f inputs:in5.connect = </Root/IntensityColor/Highest.outputs:out>
+            color3f inputs:in6
+            color3f inputs:in7
+            float inputs:which
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-396.02554, 72.566154)
+            int ui:nodegraph:node:stackingOrder = 106
+        }
+
+        def Shader "Lowest"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (0.0627451, 0.39607844, 0.67058825) (
+                colorSpace = "lin_srgb"
+            )
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-609.62915, -102.678535)
+            int ui:nodegraph:node:stackingOrder = 147
+        }
+
+        def Shader "Lower"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (0.5568628, 0.76862746, 0.87058824) (
+                colorSpace = "lin_srgb"
+            )
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-612.256, -38.51235)
+            int ui:nodegraph:node:stackingOrder = 147
+        }
+
+        def Shader "Medium"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (0.9764706, 0.9764706, 0.9764706) (
+                colorSpace = "lin_srgb"
+            )
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-610.846, 26.89896)
+            int ui:nodegraph:node:stackingOrder = 147
+        }
+
+        def Shader "High"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (0.9647059, 0.6431373, 0.50980395) (
+                colorSpace = "lin_srgb"
+            )
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-611.52826, 94.15235)
+            int ui:nodegraph:node:stackingOrder = 147
+        }
+
+        def Shader "Highest"
+        {
+            uniform token info:id = "ND_constant_color3"
+            color3f inputs:value = (0.7019608, 0.08235294, 0.16078432) (
+                colorSpace = "lin_srgb"
+            )
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-612.3867, 159.10315)
+            int ui:nodegraph:node:stackingOrder = 147
+        }
+    }
+}
+

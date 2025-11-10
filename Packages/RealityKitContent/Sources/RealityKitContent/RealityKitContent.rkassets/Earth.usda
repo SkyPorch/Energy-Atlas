@@ -1,0 +1,156 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.100.13)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def "Earth_1" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 4.712389, 0)
+        }
+        references = @Earth 1.usdz@
+    )
+    {
+        rel material:binding = None (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "RigidBody"
+        {
+            bool gravityEnabled = 0
+            uniform token info:id = "RealityKit.RigidBody"
+            bool isCCDEnabled = 0
+            token motionType = "Kinematic"
+
+            def RealityKitStruct "massFrame"
+            {
+                def RealityKitStruct "m_pose"
+                {
+                }
+            }
+
+            def RealityKitStruct "material"
+            {
+            }
+        }
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
+        }
+
+        over "geom" (
+            variants = {
+                string styles = "stylized"
+            }
+        )
+        {
+            over "realistic" (
+                variants = {
+                    string lods = "lod0"
+                }
+            )
+            {
+            }
+        }
+    }
+
+    def RealityKitComponent "InputTarget"
+    {
+        uniform token info:id = "RealityKit.InputTarget"
+    }
+
+    def RealityKitComponent "RigidBody"
+    {
+        uniform token info:id = "RealityKit.RigidBody"
+        token motionType = "Kinematic"
+
+        def RealityKitStruct "massFrame"
+        {
+            def RealityKitStruct "m_pose"
+            {
+            }
+        }
+
+        def RealityKitStruct "material"
+        {
+        }
+    }
+
+    def RealityKitComponent "AudioLibrary"
+    {
+        uniform token info:id = "RealityKit.AudioLibrary"
+
+        def RealityKitDict "resources"
+        {
+            string[] keys = ["Immersive Earth.m4a"]
+            rel values = </Root/Immersive_Earth_m4a>
+        }
+    }
+
+    def RealityKitAudioFile "Immersive_Earth_m4a"
+    {
+        uniform asset file = @Immersive Earth.m4a@
+        uniform bool shouldLoop = 1
+    }
+
+    def RealityKitTimeline "Ambient_Audio"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Audio"
+            {
+                string actionKind = "audio"
+                string audioResourceName = "Immersive Earth.m4a"
+                bool controlPlayback = 1
+                double duration = 600.0000208333333
+                uniform token info:id = "50F5629B-81EA-49C7-8FDE-41B7A344D5EE"
+                double loopCount = 0
+                double startTime = 0
+                rel target = </Root>
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+        }
+    }
+
+    def RealityKitComponent "Collider"
+    {
+        uint group = 1
+        uniform token info:id = "RealityKit.Collider"
+        uint mask = 4294967295
+        token type = "Default"
+
+        def RealityKitStruct "Shape"
+        {
+            float3 extent = (0.20500001, 0.20500001, 0.205)
+            float radius = 0.10250001
+            token shapeType = "Sphere"
+
+            def RealityKitStruct "pose"
+            {
+                float3 position = (1.8626451e-8, -1.8626451e-8, 0)
+            }
+        }
+    }
+
+    def RealityKitComponent "AmbientAudio"
+    {
+        uniform token info:id = "RealityKit.AmbientAudio"
+    }
+}
+

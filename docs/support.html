@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Atlas - Support</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1d1d1f;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        h2 {
+            color: #1d1d1f;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .highlight {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #007aff;
+        }
+        .faq-item {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .faq-question {
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 10px;
+        }
+        .faq-answer {
+            color: #666;
+        }
+        a {
+            color: #007aff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .button {
+            display: inline-block;
+            background: #007aff;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        .button:hover {
+            background: #0051d5;
+            text-decoration: none;
+        }
+        @media (max-width: 600px) {
+            body {
+                margin: 20px auto;
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Support</h1>
+        <p>Welcome to Energy Atlas support! Find answers to common questions below.</p>
+
+        <div class="highlight">
+            <strong>Need Help?</strong> For bug reports or feature requests, please visit our <a href="https://github.com/LGOICOUR/EnergyVisualizer2/issues" class="button">GitHub Issues</a>
+        </div>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">What devices does Energy Atlas support?</div>
+            <div class="faq-answer">Energy Atlas is designed exclusively for Apple Vision Pro running visionOS 2.0 or later. Apple Intelligence features require visionOS 26.0 or later.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I interact with the globe?</div>
+            <div class="faq-answer">You can rotate the globe using drag gestures. Tap on any pin to select a country and view its detailed metrics. Use the control panel to change years (2005-2022) and select different metrics.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What do the pin colors mean?</div>
+            <div class="faq-answer">Pin colors represent quintile rankings. Dark blue indicates the lowest 20% of countries for the selected metric, progressing through light blue, white, orange, to red (highest 20%). Pin height shows the actual value as a percentage of the global maximum.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I use the 3D chart?</div>
+            <div class="faq-answer">Toggle the 3D chart from the control panel to see all countries plotted across three dimensions: power consumption (X-axis), energy use (Y-axis), and greenhouse gas emissions (Z-axis). Your selected country appears as a larger sphere. Enable log scale to better visualize countries with different magnitudes.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How does the Apple Intelligence feature work?</div>
+            <div class="faq-answer">The AI Insights panel uses Apple's on-device Foundation Models to answer questions about the energy data, trends, and country comparisons. All processing happens locally on your device - no data is sent to external servers.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Where does the energy data come from?</div>
+            <div class="faq-answer">The app uses publicly available data from the World Bank and other authoritative sources, covering energy consumption, power usage, and greenhouse gas emissions from 2005 to 2022 for 137 countries.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Why can't I see some features?</div>
+            <div class="faq-answer">Apple Intelligence features require visionOS 26.0 or later and Apple Intelligence to be enabled in your device settings. Ensure your Apple Vision Pro is updated to the latest software version.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I mute the ambient music?</div>
+            <div class="faq-answer">Use the Audio toggle at the bottom of the control panel to mute or unmute the ambient background music.</div>
+        </div>
+
+        <h2>Contact</h2>
+        <div class="section">
+            <p>For additional support or questions, please reach out:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:luis@skyporch.co">luis@skyporch.co</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/LGOICOUR/EnergyVisualizer2">View Source Code</a></li>
+            </ul>
+        </div>
+
+        <h2>Report a Bug</h2>
+        <div class="section">
+            <p>Found a bug? Please report it on our GitHub Issues page with:</p>
+            <ul>
+                <li>Description of the issue</li>
+                <li>Steps to reproduce</li>
+                <li>Expected vs. actual behavior</li>
+                <li>visionOS version</li>
+            </ul>
+            <a href="https://github.com/LGOICOUR/EnergyVisualizer2/issues/new" class="button">Report Bug</a>
+        </div>
+
+        <p style="margin-top: 40px; text-align: center; color: #999; font-size: 0.9em;">
+            © 2025 Energy Atlas. All rights reserved.
+        </p>
+    </div>
+</body>
+</html>
+

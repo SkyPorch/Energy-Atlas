@@ -1,0 +1,521 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.100.13)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def Cube "Factory_3" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        reorder nameChildren = ["DefaultMaterial", "Cylinder", "Cylinder_1", "Cylinder_2"]
+        rel material:binding = </Root/Factory_3/DefaultMaterial>
+        double size = 0.2
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (2, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial" (
+            references = @SmoothConcrete.usdz@
+        )
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/Factory_3/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+
+        def Cylinder "Cylinder" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["Cylinder_1", "DefaultMaterial"]
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Factory_3/Cylinder/DefaultMaterial>
+            double radius = 0.1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.125, 1.5, 0.25)
+            float3 xformOp:translate = (-0.07, 0.1, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial" (
+                references = @SmoothConcrete.usdz@
+            )
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/Factory_3/Cylinder/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def Cylinder "Cylinder_1" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/Factory_3/Cylinder/Cylinder_1/DefaultMaterial>
+                double radius = 0.1
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (1, 0.01, 1)
+                float3 xformOp:translate = (0, 0.1, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial" (
+                    references = @SmoothConcrete.usdz@
+                )
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </Root/Factory_3/Cylinder/Cylinder_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+
+                def RealityKitComponent "VFXEmitter"
+                {
+                    uniform token info:id = "RealityKit.VFXEmitter"
+
+                    def RealityKitStruct "currentState"
+                    {
+                        token birthDirection = "Normal"
+                        token birthLocation = "Surface"
+                        float3 emissionDirection = (0, 1, 0)
+                        double emissionDuration = 1
+                        double emissionDurationVariation = 0
+                        token emitterShape = "Plane"
+                        double idleDuration = 3
+                        double idleDurationVariation = 0
+                        bool isLocal = 0
+                        bool isSpawningEnabled = 0
+                        bool loops = 1
+                        float particleSpeed = 0.5
+                        float particleSpeedVariation = 0.1
+                        float3 shapeSize = (0.05, 0.01, 0.05)
+                        bool spawnInheritParentColor = 0
+                        token spawnOccasion = "OnDeath"
+                        float spawnSpreadFactor = 0
+                        float spawnSpreadFactorVariation = 0
+                        float spawnVelocityFactor = 1
+                        double warmupDuration = 0
+
+                        def RealityKitStruct "mainEmitter"
+                        {
+                            float3 acceleration = (0, -0.05, 0)
+                            token animationRepeatMode = "Looping"
+                            token billboardMode = "Billboard"
+                            float birthRate = 2000
+                            float birthRateVariation = 0
+                            token blendMode = "Alpha"
+                            float colorEvolutionPower = 1
+                            int64 columnCount = 4
+                            float dampingFactor = 0
+                            float4 endColorA = (0.29430184, 0.08434998, 0, 1)
+                            float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                            float frameRate = 0
+                            float frameRateVariation = 0
+                            int64 initialFrame = 2
+                            int64 initialFrameVariation = 6
+                            bool isAnimated = 1
+                            bool isLightingEnabled = 0
+                            float noiseAnimationSpeed = 0
+                            float noiseScale = 1
+                            float noiseStrength = 0.1
+                            token opacityOverLife = "Constant"
+                            float particleAngle = 0
+                            float particleAngleVariation = 0
+                            float particleAngularVelocity = 0
+                            float particleAngularVelocityVariation = 1
+                            asset particleImage = @ParticleEmitterPresetTextures/dustsheet.exr@
+                            double particleLifeSpan = 2
+                            double particleLifeSpanVariation = 1
+                            float particleMass = 1
+                            float particleMassVariation = 0.8
+                            float particleSize = 0.01
+                            float particleSizeVariation = 0
+                            float3 radialGravityCenter = (0, -0.1, 0)
+                            float radialGravityStrength = -0.1
+                            int64 rowCount = 4
+                            float sizeMultiplierAtEndOfLifespan = 8
+                            float sizeMultiplierAtEndOfLifespanPower = 0.2
+                            token sortOrder = "DecreasingDepth"
+                            float spreadingAngle = 0
+                            float4 startColorA = (0, 0.27688554, 0.08290387, 1)
+                            float4 startColorB = (1, 1, 1, 0.07)
+                            float stretchFactor = 0
+                            bool useEndColor = 1
+                            bool useEndColorRange = 0
+                            bool useStartColorRange = 0
+                            float3 vortexDirection = (0, 1, 0)
+                            float vortexStrength = 0
+                        }
+
+                        def RealityKitStruct "spawnedEmitter"
+                        {
+                        }
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 1
+                }
+            }
+        }
+
+        def Cylinder "Cylinder_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["Cylinder_1", "DefaultMaterial"]
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Factory_3/Cylinder_1/DefaultMaterial>
+            double radius = 0.1
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.125, 1.5, 0.25)
+            float3 xformOp:translate = (-0.03, 0.1, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial" (
+                references = @SmoothConcrete.usdz@
+            )
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/Factory_3/Cylinder_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def Cylinder "Cylinder_1" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/Factory_3/Cylinder_1/Cylinder_1/DefaultMaterial>
+                double radius = 0.1
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (1, 0.01, 1)
+                float3 xformOp:translate = (0, 0.1, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial" (
+                    references = @SmoothConcrete.usdz@
+                )
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </Root/Factory_3/Cylinder_1/Cylinder_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+
+                def RealityKitComponent "VFXEmitter"
+                {
+                    uniform token info:id = "RealityKit.VFXEmitter"
+
+                    def RealityKitStruct "currentState"
+                    {
+                        token birthDirection = "Normal"
+                        token birthLocation = "Surface"
+                        float3 emissionDirection = (0, 1, 0)
+                        double emissionDuration = 1
+                        double emissionDurationVariation = 0
+                        token emitterShape = "Plane"
+                        double idleDuration = 3
+                        double idleDurationVariation = 0
+                        bool isLocal = 0
+                        bool isSpawningEnabled = 0
+                        bool loops = 1
+                        float particleSpeed = 0.5
+                        float particleSpeedVariation = 0.1
+                        float3 shapeSize = (0.05, 0.01, 0.05)
+                        bool spawnInheritParentColor = 0
+                        token spawnOccasion = "OnDeath"
+                        float spawnSpreadFactor = 0
+                        float spawnSpreadFactorVariation = 0
+                        float spawnVelocityFactor = 1
+                        double warmupDuration = 0
+
+                        def RealityKitStruct "mainEmitter"
+                        {
+                            float3 acceleration = (0, -0.05, 0)
+                            token animationRepeatMode = "Looping"
+                            token billboardMode = "Billboard"
+                            float birthRate = 2000
+                            float birthRateVariation = 0
+                            token blendMode = "Alpha"
+                            float colorEvolutionPower = 1
+                            int64 columnCount = 4
+                            float dampingFactor = 0
+                            float4 endColorA = (0.29430184, 0.08434998, 0, 1)
+                            float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                            float frameRate = 0
+                            float frameRateVariation = 0
+                            int64 initialFrame = 2
+                            int64 initialFrameVariation = 6
+                            bool isAnimated = 1
+                            bool isLightingEnabled = 0
+                            float noiseAnimationSpeed = 0
+                            float noiseScale = 1
+                            float noiseStrength = 0.1
+                            token opacityOverLife = "Constant"
+                            float particleAngle = 0
+                            float particleAngleVariation = 0
+                            float particleAngularVelocity = 0
+                            float particleAngularVelocityVariation = 1
+                            asset particleImage = @ParticleEmitterPresetTextures/dustsheet.exr@
+                            double particleLifeSpan = 2
+                            double particleLifeSpanVariation = 1
+                            float particleMass = 1
+                            float particleMassVariation = 0.8
+                            float particleSize = 0.01
+                            float particleSizeVariation = 0
+                            float3 radialGravityCenter = (0, -0.1, 0)
+                            float radialGravityStrength = -0.1
+                            int64 rowCount = 4
+                            float sizeMultiplierAtEndOfLifespan = 8
+                            float sizeMultiplierAtEndOfLifespanPower = 0.2
+                            token sortOrder = "DecreasingDepth"
+                            float spreadingAngle = 0
+                            float4 startColorA = (0, 0.27688554, 0.08290387, 1)
+                            float4 startColorB = (1, 1, 1, 0.07)
+                            float stretchFactor = 0
+                            bool useEndColor = 1
+                            bool useEndColorRange = 0
+                            bool useStartColorRange = 0
+                            float3 vortexDirection = (0, 1, 0)
+                            float vortexStrength = 0
+                        }
+
+                        def RealityKitStruct "spawnedEmitter"
+                        {
+                        }
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 1
+                }
+            }
+        }
+
+        def Cylinder "Cylinder_2" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["Cylinder_1", "DefaultMaterial"]
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Factory_3/Cylinder_2/DefaultMaterial>
+            double radius = 0.1
+            float2 ui:nodegraph:node:pos = (40, 40)
+            int ui:nodegraph:node:stackingOrder = 2
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.125, 1.5, 0.25)
+            float3 xformOp:translate = (0.01, 0.1, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial" (
+                references = @SmoothConcrete.usdz@
+            )
+            {
+                token outputs:mtlx:surface
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/Factory_3/Cylinder_2/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def Cylinder "Cylinder_1" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/Factory_3/Cylinder_2/Cylinder_1/DefaultMaterial>
+                double radius = 0.1
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (1, 0.01, 1)
+                float3 xformOp:translate = (0, 0.1, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial" (
+                    references = @SmoothConcrete.usdz@
+                )
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </Root/Factory_3/Cylinder_2/Cylinder_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+
+                def RealityKitComponent "VFXEmitter"
+                {
+                    uniform token info:id = "RealityKit.VFXEmitter"
+
+                    def RealityKitStruct "currentState"
+                    {
+                        token birthDirection = "Normal"
+                        token birthLocation = "Surface"
+                        float3 emissionDirection = (0, 1, 0)
+                        double emissionDuration = 1
+                        double emissionDurationVariation = 0
+                        token emitterShape = "Plane"
+                        double idleDuration = 3
+                        double idleDurationVariation = 0
+                        bool isLocal = 0
+                        bool isSpawningEnabled = 0
+                        bool loops = 1
+                        float particleSpeed = 0.5
+                        float particleSpeedVariation = 0.1
+                        float3 shapeSize = (0.05, 0.01, 0.05)
+                        bool spawnInheritParentColor = 0
+                        token spawnOccasion = "OnDeath"
+                        float spawnSpreadFactor = 0
+                        float spawnSpreadFactorVariation = 0
+                        float spawnVelocityFactor = 1
+                        double warmupDuration = 0
+
+                        def RealityKitStruct "mainEmitter"
+                        {
+                            float3 acceleration = (0, -0.05, 0)
+                            token animationRepeatMode = "Looping"
+                            token billboardMode = "Billboard"
+                            float birthRate = 2000
+                            float birthRateVariation = 0
+                            token blendMode = "Alpha"
+                            float colorEvolutionPower = 1
+                            int64 columnCount = 4
+                            float dampingFactor = 0
+                            float4 endColorA = (0.29430184, 0.08434998, 0, 1)
+                            float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                            float frameRate = 0
+                            float frameRateVariation = 0
+                            int64 initialFrame = 2
+                            int64 initialFrameVariation = 6
+                            bool isAnimated = 1
+                            bool isLightingEnabled = 0
+                            float noiseAnimationSpeed = 0
+                            float noiseScale = 1
+                            float noiseStrength = 0.1
+                            token opacityOverLife = "Constant"
+                            float particleAngle = 0
+                            float particleAngleVariation = 0
+                            float particleAngularVelocity = 0
+                            float particleAngularVelocityVariation = 1
+                            asset particleImage = @ParticleEmitterPresetTextures/dustsheet.exr@
+                            double particleLifeSpan = 2
+                            double particleLifeSpanVariation = 1
+                            float particleMass = 1
+                            float particleMassVariation = 0.8
+                            float particleSize = 0.01
+                            float particleSizeVariation = 0
+                            float3 radialGravityCenter = (0, -0.1, 0)
+                            float radialGravityStrength = -0.1
+                            int64 rowCount = 4
+                            float sizeMultiplierAtEndOfLifespan = 8
+                            float sizeMultiplierAtEndOfLifespanPower = 0.2
+                            token sortOrder = "DecreasingDepth"
+                            float spreadingAngle = 0
+                            float4 startColorA = (0, 0.27688554, 0.08290387, 1)
+                            float4 startColorB = (1, 1, 1, 0.07)
+                            float stretchFactor = 0
+                            bool useEndColor = 1
+                            bool useEndColorRange = 0
+                            bool useStartColorRange = 0
+                            float3 vortexDirection = (0, 1, 0)
+                            float vortexStrength = 0
+                        }
+
+                        def RealityKitStruct "spawnedEmitter"
+                        {
+                        }
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 1
+                }
+            }
+        }
+    }
+}
+

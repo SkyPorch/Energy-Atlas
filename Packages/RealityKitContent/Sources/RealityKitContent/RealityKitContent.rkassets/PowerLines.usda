@@ -1,0 +1,1789 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.120.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Sparks", "SparksLoop"]
+    float3 xformOp:scale = (0.1, 0.1, 0.1)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def Cylinder "Cylinder" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @GlossyBlackWoodPlank.usdz@
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/GlossyBlackWoodPlank> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.2
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.1, 10, 0.1)
+        float3 xformOp:translate = (0, 1, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            prepend token outputs:surface.connect = </Root/Cylinder/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def "GlossyBlackWoodPlank" (
+        active = true
+        references = @GlossyBlackWoodPlank.usdz@
+    )
+    {
+    }
+
+    def Cylinder "Cylinder_1" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @GlossyBlackWoodPlank.usdz@
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/GlossyBlackWoodPlank> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        token outputs:mtlx:surface.connect = </Root/Cylinder_1/PreviewSurface.outputs:out>
+        double radius = 0.2
+        float2 ui:nodegraph:node:pos = (32.36331, 471.47977)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.1, 10, 0.1)
+        float3 xformOp:translate = (0.5, 1, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:surface.connect = </Root/Cylinder_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Cylinder "Cylinder_2" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 0, 0.78539807)
+        }
+        references = @GlossyBlackWoodPlank.usdz@
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/GlossyBlackWoodPlank> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        token outputs:mtlx:surface.connect = </Root/Cylinder_2/PreviewSurface.outputs:out>
+        double radius = 0.15
+        float2 ui:nodegraph:node:pos = (52.36331, 491.47977)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (0.92387956, 0, 0, 0.3826834)
+        float3 xformOp:scale = (0.1, 3.5, 0.1)
+        float3 xformOp:translate = (0.25, 1, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:surface.connect = </Root/Cylinder_2/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Cylinder "Cylinder_3" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 0, -0.78539807)
+        }
+        references = @GlossyBlackWoodPlank.usdz@
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/GlossyBlackWoodPlank> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        token outputs:mtlx:surface.connect = </Root/Cylinder_3/PreviewSurface.outputs:out>
+        double radius = 0.15
+        float2 ui:nodegraph:node:pos = (72.36331, 511.47977)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (0.92387956, 0, 0, -0.3826834)
+        float3 xformOp:scale = (0.1, 3.5, 0.1)
+        float3 xformOp:translate = (0.25, 1, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:surface.connect = </Root/Cylinder_3/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Cylinder "Cylinder_4" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 0, 1.5707964)
+        }
+        references = @GlossyBlackWoodPlank.usdz@
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/GlossyBlackWoodPlank> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        token outputs:mtlx:surface.connect = </Root/Cylinder_4/PreviewSurface.outputs:out>
+        double radius = 0.15
+        float2 ui:nodegraph:node:pos = (72.36331, 511.47977)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (0.70710677, 0, 0, 0.70710677)
+        float3 xformOp:scale = (0.1, 6, 0.1)
+        float3 xformOp:translate = (0.25, 1.75, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:surface.connect = </Root/Cylinder_4/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Cylinder "Cylinder_6" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 0, 1.1344641)
+        }
+        references = @GlossyBlackWoodPlank.usdz@
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/GlossyBlackWoodPlank> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        token outputs:mtlx:surface.connect = </Root/Cylinder_6/PreviewSurface.outputs:out>
+        double radius = 0.1
+        float2 ui:nodegraph:node:pos = (92.36331, 531.47974)
+        int ui:nodegraph:node:stackingOrder = 4
+        quatf xformOp:orient = (0.8433914, 0, 0, 0.53729963)
+        float3 xformOp:scale = (0.05, 1.4, 0.05)
+        float3 xformOp:translate = (0.1269323, 1.8028412, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:surface.connect = </Root/Cylinder_6/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Cylinder "Cylinder_7" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 0, -1.1344641)
+        }
+        references = @GlossyBlackWoodPlank.usdz@
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/GlossyBlackWoodPlank> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        token outputs:mtlx:surface.connect = </Root/Cylinder_7/PreviewSurface.outputs:out>
+        double radius = 0.1
+        float2 ui:nodegraph:node:pos = (112.36331, 551.47974)
+        int ui:nodegraph:node:stackingOrder = 5
+        quatf xformOp:orient = (0.8433914, 0, 0, -0.53729963)
+        float3 xformOp:scale = (0.05, 1.45, 0.05)
+        float3 xformOp:translate = (0.36, 1.8028412, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:surface.connect = </Root/Cylinder_7/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Cylinder "Cylinder_8" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 0, 1.1344641)
+        }
+        references = @GlossyBlackWoodPlank.usdz@
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/GlossyBlackWoodPlank> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        token outputs:mtlx:surface.connect = </Root/Cylinder_8/PreviewSurface.outputs:out>
+        double radius = 0.1
+        float2 ui:nodegraph:node:pos = (132.36331, 571.47974)
+        int ui:nodegraph:node:stackingOrder = 6
+        quatf xformOp:orient = (0.8433914, 0, 0, 0.53729963)
+        float3 xformOp:scale = (0.05, 1.45, 0.05)
+        float3 xformOp:translate = (0.64, 1.8028412, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:surface.connect = </Root/Cylinder_8/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Cylinder "Cylinder_9" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 0, -1.1344641)
+        }
+        references = @GlossyBlackWoodPlank.usdz@
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/GlossyBlackWoodPlank> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        token outputs:mtlx:surface.connect = </Root/Cylinder_9/PreviewSurface.outputs:out>
+        double radius = 0.1
+        float2 ui:nodegraph:node:pos = (112.36331, 551.47974)
+        int ui:nodegraph:node:stackingOrder = 5
+        quatf xformOp:orient = (0.8433914, 0, 0, -0.53729963)
+        float3 xformOp:scale = (0.05, 1.4, 0.05)
+        float3 xformOp:translate = (-0.134, 1.8028412, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:surface.connect = </Root/Cylinder_9/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Cylinder "Cylinder_5" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = [
+            @GlossyBlackWoodPlank.usdz@,
+            @ScratchedMetallicPaint.usdz@
+        ]
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/ScratchedMetallicPaint> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        token outputs:mtlx:surface.connect = </Root/Cylinder_5/PreviewSurface.outputs:out>
+        double radius = 0.15
+        float2 ui:nodegraph:node:pos = (32.36331, 471.47977)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.1, 0.5, 0.1)
+        float3 xformOp:translate = (0.74, 1.7, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:surface.connect = </Root/Cylinder_5/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def "ScratchedMetallicPaint" (
+        active = true
+        references = @ScratchedMetallicPaint.usdz@
+    )
+    {
+    }
+
+    def Cylinder "Cylinder_10" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = [
+            @GlossyBlackWoodPlank.usdz@,
+            @ScratchedMetallicPaint.usdz@
+        ]
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/ScratchedMetallicPaint> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        token outputs:mtlx:surface.connect = </Root/Cylinder_10/PreviewSurface.outputs:out>
+        double radius = 0.15
+        float2 ui:nodegraph:node:pos = (52.36331, 491.47977)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.1, 0.5, 0.1)
+        float3 xformOp:translate = (-0.22, 1.7, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:surface.connect = </Root/Cylinder_10/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Cylinder "Cylinder_11" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = [
+            @GlossyBlackWoodPlank.usdz@,
+            @ScratchedMetallicPaint.usdz@
+        ]
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/ScratchedMetallicPaint> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        token outputs:mtlx:surface.connect = </Root/Cylinder_11/PreviewSurface.outputs:out>
+        double radius = 0.15
+        float2 ui:nodegraph:node:pos = (52.36331, 491.47977)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.1, 0.5, 0.1)
+        float3 xformOp:translate = (0.25, 1.7, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:surface.connect = </Root/Cylinder_11/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "Root"
+    {
+        float2 ui:nodegraph:node:pos = (32.36331, 471.47977)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 1.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Cylinder "Cylinder" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = @GlossyBlackWoodPlank.usdz@
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Root/GlossyBlackWoodPlank> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0.2
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.1, 10, 0.1)
+            float3 xformOp:translate = (0, 1, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Root/Cylinder/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+
+        def "GlossyBlackWoodPlank" (
+            active = true
+            references = @GlossyBlackWoodPlank.usdz@
+        )
+        {
+        }
+
+        def Cylinder "Cylinder_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = @GlossyBlackWoodPlank.usdz@
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Root/GlossyBlackWoodPlank> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            token outputs:mtlx:surface.connect = </Root/Root/Cylinder_1/PreviewSurface.outputs:out>
+            double radius = 0.2
+            float2 ui:nodegraph:node:pos = (32.36331, 471.47977)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.1, 10, 0.1)
+            float3 xformOp:translate = (0.5, 1, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Root/Cylinder_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+
+        def Cylinder "Cylinder_2" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (0, 0, 0.78539807)
+            }
+            references = @GlossyBlackWoodPlank.usdz@
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Root/GlossyBlackWoodPlank> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            token outputs:mtlx:surface.connect = </Root/Root/Cylinder_2/PreviewSurface.outputs:out>
+            double radius = 0.15
+            float2 ui:nodegraph:node:pos = (52.36331, 491.47977)
+            int ui:nodegraph:node:stackingOrder = 2
+            quatf xformOp:orient = (0.92387956, 0, 0, 0.3826834)
+            float3 xformOp:scale = (0.1, 3.5, 0.1)
+            float3 xformOp:translate = (0.25, 1, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Root/Cylinder_2/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+
+        def Cylinder "Cylinder_3" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (0, 0, -0.78539807)
+            }
+            references = @GlossyBlackWoodPlank.usdz@
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Root/GlossyBlackWoodPlank> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            token outputs:mtlx:surface.connect = </Root/Root/Cylinder_3/PreviewSurface.outputs:out>
+            double radius = 0.15
+            float2 ui:nodegraph:node:pos = (72.36331, 511.47977)
+            int ui:nodegraph:node:stackingOrder = 3
+            quatf xformOp:orient = (0.92387956, 0, 0, -0.3826834)
+            float3 xformOp:scale = (0.1, 3.5, 0.1)
+            float3 xformOp:translate = (0.25, 1, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Root/Cylinder_3/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+
+        def Cylinder "Cylinder_4" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (0, 0, 1.5707964)
+            }
+            references = @GlossyBlackWoodPlank.usdz@
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Root/GlossyBlackWoodPlank> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            token outputs:mtlx:surface.connect = </Root/Root/Cylinder_4/PreviewSurface.outputs:out>
+            double radius = 0.15
+            float2 ui:nodegraph:node:pos = (72.36331, 511.47977)
+            int ui:nodegraph:node:stackingOrder = 3
+            quatf xformOp:orient = (0.70710677, 0, 0, 0.70710677)
+            float3 xformOp:scale = (0.1, 6, 0.1)
+            float3 xformOp:translate = (0.25, 1.75, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Root/Cylinder_4/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+
+        def Cylinder "Cylinder_6" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (0, 0, 1.1344641)
+            }
+            references = @GlossyBlackWoodPlank.usdz@
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Root/GlossyBlackWoodPlank> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            token outputs:mtlx:surface.connect = </Root/Root/Cylinder_6/PreviewSurface.outputs:out>
+            double radius = 0.1
+            float2 ui:nodegraph:node:pos = (92.36331, 531.47974)
+            int ui:nodegraph:node:stackingOrder = 4
+            quatf xformOp:orient = (0.8433914, 0, 0, 0.53729963)
+            float3 xformOp:scale = (0.05, 1.4, 0.05)
+            float3 xformOp:translate = (0.1269323, 1.8028412, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Root/Cylinder_6/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+
+        def Cylinder "Cylinder_7" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (0, 0, -1.1344641)
+            }
+            references = @GlossyBlackWoodPlank.usdz@
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Root/GlossyBlackWoodPlank> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            token outputs:mtlx:surface.connect = </Root/Root/Cylinder_7/PreviewSurface.outputs:out>
+            double radius = 0.1
+            float2 ui:nodegraph:node:pos = (112.36331, 551.47974)
+            int ui:nodegraph:node:stackingOrder = 5
+            quatf xformOp:orient = (0.8433914, 0, 0, -0.53729963)
+            float3 xformOp:scale = (0.05, 1.45, 0.05)
+            float3 xformOp:translate = (0.36, 1.8028412, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Root/Cylinder_7/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+
+        def Cylinder "Cylinder_8" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (0, 0, 1.1344641)
+            }
+            references = @GlossyBlackWoodPlank.usdz@
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Root/GlossyBlackWoodPlank> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            token outputs:mtlx:surface.connect = </Root/Root/Cylinder_8/PreviewSurface.outputs:out>
+            double radius = 0.1
+            float2 ui:nodegraph:node:pos = (132.36331, 571.47974)
+            int ui:nodegraph:node:stackingOrder = 6
+            quatf xformOp:orient = (0.8433914, 0, 0, 0.53729963)
+            float3 xformOp:scale = (0.05, 1.45, 0.05)
+            float3 xformOp:translate = (0.64, 1.8028412, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Root/Cylinder_8/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+
+        def Cylinder "Cylinder_9" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (0, 0, -1.1344641)
+            }
+            references = @GlossyBlackWoodPlank.usdz@
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Root/GlossyBlackWoodPlank> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            token outputs:mtlx:surface.connect = </Root/Root/Cylinder_9/PreviewSurface.outputs:out>
+            double radius = 0.1
+            float2 ui:nodegraph:node:pos = (112.36331, 551.47974)
+            int ui:nodegraph:node:stackingOrder = 5
+            quatf xformOp:orient = (0.8433914, 0, 0, -0.53729963)
+            float3 xformOp:scale = (0.05, 1.4, 0.05)
+            float3 xformOp:translate = (-0.134, 1.8028412, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Root/Cylinder_9/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+
+        def Cylinder "Cylinder_5" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = [
+                @GlossyBlackWoodPlank.usdz@,
+                @ScratchedMetallicPaint.usdz@
+            ]
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Root/ScratchedMetallicPaint> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            token outputs:mtlx:surface.connect = </Root/Root/Cylinder_5/PreviewSurface.outputs:out>
+            double radius = 0.15
+            float2 ui:nodegraph:node:pos = (32.36331, 471.47977)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.1, 0.5, 0.1)
+            float3 xformOp:translate = (0.74, 1.7, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Root/Cylinder_5/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+
+        def "ScratchedMetallicPaint" (
+            active = true
+            references = @ScratchedMetallicPaint.usdz@
+        )
+        {
+        }
+
+        def Cylinder "Cylinder_10" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = [
+                @GlossyBlackWoodPlank.usdz@,
+                @ScratchedMetallicPaint.usdz@
+            ]
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Root/ScratchedMetallicPaint> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            token outputs:mtlx:surface.connect = </Root/Root/Cylinder_10/PreviewSurface.outputs:out>
+            double radius = 0.15
+            float2 ui:nodegraph:node:pos = (52.36331, 491.47977)
+            int ui:nodegraph:node:stackingOrder = 2
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.1, 0.5, 0.1)
+            float3 xformOp:translate = (-0.22, 1.7, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Root/Cylinder_10/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+
+        def Cylinder "Cylinder_11" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = [
+                @GlossyBlackWoodPlank.usdz@,
+                @ScratchedMetallicPaint.usdz@
+            ]
+        )
+        {
+            uniform token axis = "Y"
+            double height = 0.2
+            rel material:binding = </Root/Root/ScratchedMetallicPaint> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            token outputs:mtlx:surface.connect = </Root/Root/Cylinder_11/PreviewSurface.outputs:out>
+            double radius = 0.15
+            float2 ui:nodegraph:node:pos = (52.36331, 491.47977)
+            int ui:nodegraph:node:stackingOrder = 2
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.1, 0.5, 0.1)
+            float3 xformOp:translate = (0.25, 1.7, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/Root/Cylinder_11/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+        }
+    }
+
+    def "BlackABSPlastic" (
+        active = true
+        references = @BlackABSPlastic.usdz@
+    )
+    {
+    }
+
+    def "BlackSiliconeRubber" (
+        active = true
+        references = @BlackSiliconeRubber.usdz@
+    )
+    {
+    }
+
+    def "PowerWire" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (1.5707961, 1.5707963, 3.1415925)
+        }
+        references = [
+            @PowerWire.usdz@,
+            @BlackSiliconeRubber.usdz@
+        ]
+    )
+    {
+        reorder nameChildren = ["Spark1", "UsdPreviewSurface", "add", "Swizzle_1", "Swizzle", "Multiply_1", "Mix", "Dot", "Metallic", "PreviewSurface", "Normal", "BaseColor", "Roughness", "multiply", "PowerWire", "_materials", "Light", "Camera", "env_light"]
+        rel material:binding = </Root/BlackSiliconeRubber> (
+            bindMaterialAs = "strongerThanDescendants"
+        )
+        quatf xformOp:orient = (0.5, -0.5, 0.49999997, 0.50000006)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.22, 0.46, 1.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Sphere "Spark1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = None (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0.001
+            quatf xformOp:orient = (-0.5, -0.5, 0.49999994, 0.50000006)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 1.2)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/PowerWire/Spark1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitComponent "VFXEmitter"
+            {
+                uniform token info:id = "RealityKit.VFXEmitter"
+
+                def RealityKitStruct "currentState"
+                {
+                    token birthDirection = "Constant"
+                    token birthLocation = "Surface"
+                    int64 burstCount = 100
+                    float3 emissionDirection = (0, 1, 0)
+                    double emissionDuration = 0.05
+                    double emissionDurationVariation = 0.1
+                    token emitterShape = "Point"
+                    double idleDuration = 0
+                    double idleDurationVariation = 0.1
+                    bool isLocal = 0
+                    bool isLocalFields = 0
+                    bool isSpawningEnabled = 1
+                    bool loops = 1
+                    float particleSpeed = 1
+                    float particleSpeedVariation = 0.4
+                    float3 shapeSize = (1, 1, 1)
+                    bool spawnInheritParentColor = 0
+                    token spawnOccasion = "OnBirth"
+                    float spawnSpreadFactor = 0
+                    float spawnSpreadFactorVariation = 0
+                    float spawnVelocityFactor = -1
+                    double warmupDuration = 0
+
+                    def RealityKitStruct "mainEmitter"
+                    {
+                        float3 acceleration = (0, -3, 0)
+                        token billboardMode = "Billboard"
+                        float birthRate = 30
+                        float birthRateVariation = 1000
+                        token blendMode = "Additive"
+                        float colorEvolutionPower = 0.2
+                        float dampingFactor = 20
+                        float4 endColorA = (0.9986965, 0.9674097, 0, 1)
+                        float4 endColorB = (1, 1, 1, 1)
+                        bool isLightingEnabled = 0
+                        float noiseAnimationSpeed = 0
+                        float noiseScale = 0
+                        float noiseStrength = 0
+                        token opacityOverLife = "GradualFadeInOut"
+                        float particleAngle = 0
+                        float particleAngleVariation = 0
+                        float particleAngularVelocity = 0
+                        float particleAngularVelocityVariation = 0
+                        asset particleImage = @ParticleEmitterPresetTextures/flare.exr@
+                        double particleLifeSpan = 0.4
+                        double particleLifeSpanVariation = 0.22
+                        float particleMass = 1
+                        float particleMassVariation = 0.1
+                        float particleSize = 0.01
+                        float particleSizeVariation = 0.003
+                        float3 radialGravityCenter = (0, 0, 0)
+                        float radialGravityStrength = 0
+                        float sizeMultiplierAtEndOfLifespan = 0.1
+                        float sizeMultiplierAtEndOfLifespanPower = 0.001
+                        token sortOrder = "IncreasingDepth"
+                        float spreadingAngle = 0.2
+                        float4 startColorA = (1, 1, 1, 1)
+                        float4 startColorB = (1, 1, 1, 1)
+                        float stretchFactor = 12
+                        bool useEndColor = 1
+                        bool useEndColorRange = 1
+                        bool useStartColorRange = 1
+                        float3 vortexDirection = (0, 0, 0)
+                        float vortexStrength = 0
+                    }
+
+                    def RealityKitStruct "spawnedEmitter"
+                    {
+                        float3 acceleration = (0, -2, 0)
+                        token billboardMode = "Billboard"
+                        float birthRate = 400
+                        float birthRateVariation = 0
+                        token blendMode = "Additive"
+                        float colorEvolutionPower = 1
+                        float dampingFactor = 0
+                        float4 endColorA = (0.0013309671, 0.03458923, 1, 1)
+                        float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                        bool isLightingEnabled = 0
+                        float noiseAnimationSpeed = 0
+                        float noiseScale = 0.4
+                        float noiseStrength = 3
+                        token opacityOverLife = "Constant"
+                        float particleAngle = 0
+                        float particleAngleVariation = 0
+                        float particleAngularVelocity = 0
+                        float particleAngularVelocityVariation = 0
+                        asset particleImage = @ParticleEmitterPresetTextures/flare.exr@
+                        double particleLifeSpan = 0.25
+                        double particleLifeSpanVariation = 0
+                        float particleMass = 1
+                        float particleMassVariation = 0
+                        float particleSize = 0.001
+                        float particleSizeVariation = 0.001
+                        float3 radialGravityCenter = (0, 0, 0)
+                        float radialGravityStrength = 0
+                        float sizeMultiplierAtEndOfLifespan = 1.3
+                        float sizeMultiplierAtEndOfLifespanPower = 0
+                        token sortOrder = "IncreasingID"
+                        float spreadingAngle = 0
+                        float4 startColorA = (1, 1, 1, 1)
+                        float4 startColorB = (1, 1, 1, 1)
+                        float stretchFactor = 0
+                        bool useEndColor = 0
+                        bool useEndColorRange = 0
+                        bool useStartColorRange = 0
+                        float3 vortexDirection = (0, 1, 0)
+                        float vortexStrength = 0
+                    }
+                }
+            }
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+            }
+        }
+
+        over "Light" (
+            active = false
+        )
+        {
+        }
+
+        over "env_light" (
+            active = false
+        )
+        {
+        }
+    }
+
+    def "PowerWire_1" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (1.5707961, 1.5707963, 3.1415925)
+        }
+        references = [
+            @PowerWire.usdz@,
+            @BlackSiliconeRubber.usdz@
+        ]
+    )
+    {
+        reorder nameChildren = ["Spark2", "UsdPreviewSurface", "add", "Swizzle_1", "Swizzle", "Multiply_1", "Mix", "Dot", "Metallic", "PreviewSurface", "Normal", "BaseColor", "Roughness", "multiply", "PowerWire", "_materials", "Light", "Camera", "env_light"]
+        rel material:binding = </Root/BlackSiliconeRubber> (
+            bindMaterialAs = "strongerThanDescendants"
+        )
+        token outputs:mtlx:surface.connect = </Root/PowerWire_1/PreviewSurface.outputs:out>
+        float2 ui:nodegraph:node:pos = (32.36331, 471.47977)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (0.5, -0.5, 0.49999997, 0.50000006)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.25, 0.46, 1.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Sphere "Spark2" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = None (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0.001
+            float2 ui:nodegraph:node:pos = (32.36331, 471.47977)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (0.5000996, 0.50009966, -0.4997009, -0.5000997)
+            float3 xformOp:scale = (1, 0.99999994, 0.99999994)
+            float3 xformOp:translate = (1.1920929e-7, -1.3411045e-7, 1.1999999)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/PowerWire_1/Spark2/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitComponent "VFXEmitter"
+            {
+                uniform token info:id = "RealityKit.VFXEmitter"
+
+                def RealityKitStruct "currentState"
+                {
+                    token birthDirection = "Constant"
+                    token birthLocation = "Surface"
+                    float3 emissionDirection = (0.5, 1, 0)
+                    double emissionDuration = 0.05
+                    double emissionDurationVariation = 0.1
+                    token emitterShape = "Point"
+                    double idleDuration = 0
+                    double idleDurationVariation = 0.1
+                    bool isLocal = 0
+                    bool isSpawningEnabled = 1
+                    bool loops = 1
+                    float particleSpeed = 1
+                    float particleSpeedVariation = 0.4
+                    float3 shapeSize = (1, 1, 1)
+                    bool spawnInheritParentColor = 0
+                    token spawnOccasion = "OnBirth"
+                    float spawnSpreadFactor = 0
+                    float spawnSpreadFactorVariation = 0
+                    float spawnVelocityFactor = -1
+                    double warmupDuration = 0
+
+                    def RealityKitStruct "mainEmitter"
+                    {
+                        float3 acceleration = (0, -3, 0)
+                        token billboardMode = "Billboard"
+                        float birthRate = 30
+                        float birthRateVariation = 1000
+                        token blendMode = "Additive"
+                        float colorEvolutionPower = 0.2
+                        float dampingFactor = 20
+                        float4 endColorA = (0.9986965, 0.9674097, 0, 1)
+                        float4 endColorB = (1, 1, 1, 1)
+                        bool isLightingEnabled = 0
+                        float noiseAnimationSpeed = 0
+                        float noiseScale = 1
+                        float noiseStrength = 0
+                        token opacityOverLife = "GradualFadeInOut"
+                        float particleAngle = 0
+                        float particleAngleVariation = 0
+                        float particleAngularVelocity = 0
+                        float particleAngularVelocityVariation = 0
+                        asset particleImage = @ParticleEmitterPresetTextures/flare.exr@
+                        double particleLifeSpan = 0.4
+                        double particleLifeSpanVariation = 0.22
+                        float particleMass = 1
+                        float particleMassVariation = 0.1
+                        float particleSize = 0.01
+                        float particleSizeVariation = 0.003
+                        float3 radialGravityCenter = (1, 1, 0)
+                        float radialGravityStrength = 0
+                        float sizeMultiplierAtEndOfLifespan = 0.1
+                        float sizeMultiplierAtEndOfLifespanPower = 0.001
+                        token sortOrder = "IncreasingDepth"
+                        float spreadingAngle = 0.2
+                        float4 startColorA = (1, 1, 1, 1)
+                        float4 startColorB = (1, 1, 1, 1)
+                        float stretchFactor = 12
+                        bool useEndColor = 1
+                        bool useEndColorRange = 1
+                        bool useStartColorRange = 1
+                        float3 vortexDirection = (0, 1, 0)
+                        float vortexStrength = 0
+                    }
+
+                    def RealityKitStruct "spawnedEmitter"
+                    {
+                        float3 acceleration = (0, -2, 0)
+                        token billboardMode = "Billboard"
+                        float birthRate = 400
+                        float birthRateVariation = 0
+                        token blendMode = "Additive"
+                        float colorEvolutionPower = 1
+                        float dampingFactor = 0
+                        float4 endColorA = (0.0013309671, 0.03458923, 1, 1)
+                        float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                        bool isLightingEnabled = 0
+                        float noiseAnimationSpeed = 0
+                        float noiseScale = 0.4
+                        float noiseStrength = 3
+                        token opacityOverLife = "Constant"
+                        float particleAngle = 0
+                        float particleAngleVariation = 0
+                        float particleAngularVelocity = 0
+                        float particleAngularVelocityVariation = 0
+                        asset particleImage = @ParticleEmitterPresetTextures/flare.exr@
+                        double particleLifeSpan = 0.25
+                        double particleLifeSpanVariation = 0
+                        float particleMass = 1
+                        float particleMassVariation = 0
+                        float particleSize = 0.001
+                        float particleSizeVariation = 0.001
+                        float3 radialGravityCenter = (0, 0, 0)
+                        float radialGravityStrength = 0
+                        float sizeMultiplierAtEndOfLifespan = 1.3
+                        float sizeMultiplierAtEndOfLifespanPower = 0
+                        token sortOrder = "IncreasingID"
+                        float spreadingAngle = 0
+                        float4 startColorA = (1, 1, 1, 1)
+                        float4 startColorB = (1, 1, 1, 1)
+                        float stretchFactor = 0
+                        bool useEndColor = 0
+                        bool useEndColorRange = 0
+                        bool useStartColorRange = 0
+                        float3 vortexDirection = (0, 1, 0)
+                        float vortexStrength = 0
+                    }
+                }
+            }
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+            }
+        }
+
+        over "Light" (
+            active = false
+        )
+        {
+        }
+
+        over "env_light" (
+            active = false
+        )
+        {
+        }
+    }
+
+    def "PowerWire_2" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (1.5707961, 1.5707963, 3.1415925)
+        }
+        references = [
+            @PowerWire.usdz@,
+            @BlackSiliconeRubber.usdz@
+        ]
+    )
+    {
+        reorder nameChildren = ["Spark3", "UsdPreviewSurface", "add", "Swizzle_1", "Swizzle", "Multiply_1", "Mix", "Dot", "Metallic", "PreviewSurface", "Normal", "BaseColor", "Roughness", "multiply", "PowerWire", "_materials", "Light", "Camera", "env_light"]
+        rel material:binding = </Root/BlackSiliconeRubber> (
+            bindMaterialAs = "strongerThanDescendants"
+        )
+        token outputs:mtlx:surface.connect = </Root/PowerWire_2/PreviewSurface.outputs:out>
+        float2 ui:nodegraph:node:pos = (52.36331, 491.47977)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (0.5, -0.5, 0.49999997, 0.50000006)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0.74, 0.46, 1.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Sphere "Spark3" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = None (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0.001
+            float2 ui:nodegraph:node:pos = (52.36331, 491.47977)
+            int ui:nodegraph:node:stackingOrder = 2
+            quatf xformOp:orient = (0.5001408, 0.50014096, -0.49957705, -0.5001409)
+            float3 xformOp:scale = (0.9999998, 0.9999998, 0.9999998)
+            float3 xformOp:translate = (0, 0, 1.2)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:surface.connect = </Root/PowerWire_2/Spark3/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                def Shader "DefaultSurfaceShader"
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (1, 1, 1)
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+            }
+
+            def RealityKitComponent "VFXEmitter"
+            {
+                uniform token info:id = "RealityKit.VFXEmitter"
+
+                def RealityKitStruct "currentState"
+                {
+                    token birthDirection = "Constant"
+                    token birthLocation = "Surface"
+                    float3 emissionDirection = (0.5, 1, 0)
+                    double emissionDuration = 0.05
+                    double emissionDurationVariation = 0.1
+                    token emitterShape = "Point"
+                    double idleDuration = 0
+                    double idleDurationVariation = 0.1
+                    bool isLocal = 0
+                    bool isSpawningEnabled = 1
+                    bool loops = 1
+                    float particleSpeed = 1
+                    float particleSpeedVariation = 0.4
+                    float3 shapeSize = (1, 1, 1)
+                    bool spawnInheritParentColor = 0
+                    token spawnOccasion = "OnBirth"
+                    float spawnSpreadFactor = 0
+                    float spawnSpreadFactorVariation = 0
+                    float spawnVelocityFactor = -1
+                    double warmupDuration = 0
+
+                    def RealityKitStruct "mainEmitter"
+                    {
+                        float3 acceleration = (0, -3, 0)
+                        token billboardMode = "Billboard"
+                        float birthRate = 30
+                        float birthRateVariation = 1000
+                        token blendMode = "Additive"
+                        float colorEvolutionPower = 0.2
+                        float dampingFactor = 20
+                        float4 endColorA = (0.9986965, 0.9674097, 0, 1)
+                        float4 endColorB = (1, 1, 1, 1)
+                        bool isLightingEnabled = 0
+                        float noiseAnimationSpeed = 0
+                        float noiseScale = 1
+                        float noiseStrength = 0
+                        token opacityOverLife = "GradualFadeInOut"
+                        float particleAngle = 0
+                        float particleAngleVariation = 0
+                        float particleAngularVelocity = 0
+                        float particleAngularVelocityVariation = 0
+                        asset particleImage = @ParticleEmitterPresetTextures/flare.exr@
+                        double particleLifeSpan = 0.4
+                        double particleLifeSpanVariation = 0.22
+                        float particleMass = 1
+                        float particleMassVariation = 0.1
+                        float particleSize = 0.01
+                        float particleSizeVariation = 0.003
+                        float3 radialGravityCenter = (1, 1, 0)
+                        float radialGravityStrength = 0
+                        float sizeMultiplierAtEndOfLifespan = 0.1
+                        float sizeMultiplierAtEndOfLifespanPower = 0.001
+                        token sortOrder = "IncreasingDepth"
+                        float spreadingAngle = 0.2
+                        float4 startColorA = (1, 1, 1, 1)
+                        float4 startColorB = (1, 1, 1, 1)
+                        float stretchFactor = 12
+                        bool useEndColor = 1
+                        bool useEndColorRange = 1
+                        bool useStartColorRange = 1
+                        float3 vortexDirection = (0, 1, 0)
+                        float vortexStrength = 0
+                    }
+
+                    def RealityKitStruct "spawnedEmitter"
+                    {
+                        float3 acceleration = (0, -2, 0)
+                        token billboardMode = "Billboard"
+                        float birthRate = 400
+                        float birthRateVariation = 0
+                        token blendMode = "Additive"
+                        float colorEvolutionPower = 1
+                        float dampingFactor = 0
+                        float4 endColorA = (0.0013309671, 0.03458923, 1, 1)
+                        float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                        bool isLightingEnabled = 0
+                        float noiseAnimationSpeed = 0
+                        float noiseScale = 0.4
+                        float noiseStrength = 3
+                        token opacityOverLife = "Constant"
+                        float particleAngle = 0
+                        float particleAngleVariation = 0
+                        float particleAngularVelocity = 0
+                        float particleAngularVelocityVariation = 0
+                        asset particleImage = @ParticleEmitterPresetTextures/flare.exr@
+                        double particleLifeSpan = 0.25
+                        double particleLifeSpanVariation = 0
+                        float particleMass = 1
+                        float particleMassVariation = 0
+                        float particleSize = 0.001
+                        float particleSizeVariation = 0.001
+                        float3 radialGravityCenter = (0, 0, 0)
+                        float radialGravityStrength = 0
+                        float sizeMultiplierAtEndOfLifespan = 1.3
+                        float sizeMultiplierAtEndOfLifespanPower = 0
+                        token sortOrder = "IncreasingID"
+                        float spreadingAngle = 0
+                        float4 startColorA = (1, 1, 1, 1)
+                        float4 startColorB = (1, 1, 1, 1)
+                        float stretchFactor = 0
+                        bool useEndColor = 0
+                        bool useEndColorRange = 0
+                        bool useStartColorRange = 0
+                        float3 vortexDirection = (0, 1, 0)
+                        float vortexStrength = 0
+                    }
+                }
+            }
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+            }
+        }
+
+        over "Light" (
+            active = false
+        )
+        {
+        }
+
+        over "env_light" (
+            active = false
+        )
+        {
+        }
+    }
+
+    def RealityKitTimeline "Sparks"
+    {
+        reorder nameChildren = ["Track3", "Track2", "Track", "Track4"]
+        def RealityKitTrack "Track2"
+        {
+            reorder nameChildren = ["Transform_To", "Show", "Hide", "Transform_To2"]
+            def RealityKitAction "Transform_To"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 3.9830937927997607
+                uniform token info:id = "1B6A10DA-5F6E-47FC-8D1B-019BA352EE16"
+                float3 position = (1.5, 0, 1.2)
+                quatf rotation = (0.99999994, -0.00019933996, 0.00019933998, -0.00019933996)
+                float3 scale = (1, 1, 0.9999999)
+                double startTime = 1.3115343078182626
+                rel target = </Root/PowerWire_1/Spark2>
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Show"
+            {
+                string actionKind = "show"
+                int blendLayer = 300
+                double duration = 0.22081853640761773
+                uniform token info:id = "B3143370-7219-4C48-8DB6-00C37836AEC8"
+                double startTime = 1.0907157714106446
+                rel target = </Root/PowerWire_1/Spark2>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Hide"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0.3755990357220715
+                uniform token info:id = "3BBCC6BD-AA75-4A59-AD77-81A3F78FCCF0"
+                double startTime = 5.304234884726706
+                rel target = </Root/PowerWire_1/Spark2>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Transform_To2"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 0.41376774670457805
+                uniform token info:id = "74FD4D3A-3DE3-4FE1-8CC6-F629F9531A0D"
+                float3 position = (1.1920929e-7, -1.3411045e-7, 1.1999999)
+                quatf rotation = (0.5000996, 0.5000997, -0.49970084, -0.5000997)
+                float3 scale = (1, 0.9999999, 1)
+                double startTime = 5.691489167958354
+                rel target = </Root/PowerWire_1/Spark2>
+                float2 ui:nodegraph:node:pos = (32.36331, 471.47977)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track3"
+        {
+            def RealityKitAction "Transform_To"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 4.020396959459459
+                uniform token info:id = "5C98D7AE-849F-4101-A978-32B8A819E8D2"
+                float3 position = (1.5, 0, 1.2)
+                quatf rotation = (-0.5, -0.5, 0.49999994, 0.50000006)
+                float3 scale = (0.09999999, 0.09999999, 0.09999999)
+                double startTime = 0.30322539847603025
+                rel target = </Root/PowerWire/Spark1>
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Hide"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0.2854710538449638
+                uniform token info:id = "130B707F-AFFC-4C82-A9E9-219277882AE0"
+                double startTime = 4.340467518138892
+                rel target = </Root/PowerWire/Spark1>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Transform_To2"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 0.41376774670457805
+                uniform token info:id = "74FD4D3A-3DE3-4FE1-8CC6-F629F9531A0D"
+                float3 position = (-1.5, 0, 1.2)
+                quatf rotation = (0.5, 0.5, -0.49999994, -0.50000006)
+                float3 scale = (1, 1, 1)
+                double startTime = 4.6259385720838555
+                rel target = </Root/PowerWire/Spark1>
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Show"
+            {
+                string actionKind = "show"
+                int blendLayer = 300
+                double duration = 0.2039436362141086
+                uniform token info:id = "5A22EDCF-C05D-44FD-AFBD-00AF0A5857B7"
+                double startTime = 0.09928176226192167
+                rel target = </Root/PowerWire/Spark1>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["Transform_To", "Show", "Hide", "Transform_To2"]
+            def RealityKitAction "Transform_To"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 4.00400175826901
+                uniform token info:id = "13F9E7A9-A81D-4E0F-B16D-88A9E016F53A"
+                float3 position = (1.5, 0, 1.2)
+                quatf rotation = (0.5001408, 0.50014096, -0.49957708, -0.50014096)
+                float3 scale = (0.99999976, 0.99999976, 0.99999976)
+                double startTime = 2.3025832098629655
+                rel target = </Root/PowerWire_2/Spark3>
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Show"
+            {
+                string actionKind = "show"
+                int blendLayer = 300
+                double duration = 0.22081853640761773
+                uniform token info:id = "B3143370-7219-4C48-8DB6-00C37836AEC8"
+                double startTime = 2.0817646734553477
+                rel target = </Root/PowerWire_2/Spark3>
+                float2 ui:nodegraph:node:pos = (32.36331, 471.47977)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Hide"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0.3755990357220715
+                uniform token info:id = "3BBCC6BD-AA75-4A59-AD77-81A3F78FCCF0"
+                double startTime = 6.309433245286985
+                rel target = </Root/PowerWire_2/Spark3>
+                float2 ui:nodegraph:node:pos = (32.36331, 471.47977)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Transform_To2"
+            {
+                string actionKind = "moveTo"
+                int blendLayer = 300
+                double duration = 0.41376774670457805
+                uniform token info:id = "74FD4D3A-3DE3-4FE1-8CC6-F629F9531A0D"
+                float3 position = (0, 0, 1.2)
+                quatf rotation = (0.5001408, 0.50014096, -0.49957708, -0.50014096)
+                float3 scale = (0.99999976, 0.99999976, 0.99999976)
+                double startTime = 6.685032281109057
+                rel target = </Root/PowerWire_2/Spark3>
+                float2 ui:nodegraph:node:pos = (52.36331, 491.47977)
+                int ui:nodegraph:node:stackingOrder = 2
+
+                def RealityKitStruct "transformMode"
+                {
+                    rel referenceEntity = </Root>
+                    token type = "parent"
+                }
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+    }
+
+    def RealityKitTimeline "SparksLoop"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 7.098800027813635
+                uniform token info:id = "D43BB1D7-2314-4E01-8AFF-D7E79AEA0E12"
+                double loopCount = 0
+                double startTime = 0.02056587837837838
+                rel timeline = </Root/Sparks>
+            }
+        }
+    }
+
+    def RealityKitComponent "RCP_BehaviorsContainer"
+    {
+        rel behaviors = </Root/OnAddedToScene>
+        uniform token info:id = "RCP.BehaviorsContainer"
+    }
+
+    def Preliminary_Behavior "OnAddedToScene"
+    {
+        rel actions = </Root/OnAddedToScene/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnAddedToScene/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            token info:id = "SceneTransition"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/SparksLoop>
+            rel animationLibraryKeyOverrideKey = </Root/OnAddedToScene/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+}
+

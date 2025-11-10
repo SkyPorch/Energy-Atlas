@@ -1,0 +1,743 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.120.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["ChimneyMove", "ChimneyMoveLoop", "Billboard", "BillboardLoop"]
+    def "Factory" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (4.7123885, 0, 0)
+        }
+        references = @Factory.usdz@
+    )
+    {
+        reorder nameChildren = ["Light", "Camera", "Factory_Roof", "_materials", "Roof_Glass", "Chimney_0", "Factory_Base", "Factory_Wing_L", "Chimney_1", "Chimney_2", "env_light", "Smokestack3"]
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (0.02, 0.02, 0.02)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Chimney_0"
+        {
+            reorder nameChildren = ["Cylinder_001", "Smokestack1"]
+            over "Cylinder_001"
+            {
+                reorder nameChildren = ["RCP_BehaviorsContainer", "OnAddedToScene", "Cylinder"]
+                def RealityKitComponent "RCP_BehaviorsContainer"
+                {
+                    rel behaviors = </Root/Factory/Chimney_0/Cylinder_001/OnAddedToScene>
+                    uniform token info:id = "RCP.BehaviorsContainer"
+                }
+
+                def Preliminary_Behavior "OnAddedToScene"
+                {
+                    rel actions = </Root/Factory/Chimney_0/Cylinder_001/OnAddedToScene/Action>
+                    uniform bool exclusive
+                    rel triggers = </Root/Factory/Chimney_0/Cylinder_001/OnAddedToScene/Trigger>
+
+                    def Preliminary_Trigger "Trigger"
+                    {
+                        rel affectedObjects = </Root/Factory/Chimney_0/Cylinder_001>
+                        token info:id = "SceneTransition"
+                    }
+
+                    def Preliminary_Action "Action"
+                    {
+                        rel affectedObjects = </Root>
+                        rel animationLibraryKey = </Root/ChimneyMove>
+                        rel animationLibraryKeyOverrideKey = </Root/Factory/Chimney_0/Cylinder_001/OnAddedToScene/Trigger>
+                        token info:id = "PlayTimeline"
+                        int loops = 0
+                        int performCount = 1
+                        token type = "serial"
+                    }
+                }
+            }
+
+            def Cylinder "Smokestack1" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/Factory/_materials/Brick_Mat> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double radius = 0.1
+                quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
+                float3 xformOp:scale = (1.9999998, 0.009999998, 1.9999998)
+                float3 xformOp:translate = (0, 8.556464e-16, 1.75)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </Root/Factory/Chimney_0/Smokestack1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+
+                def RealityKitComponent "VFXEmitter"
+                {
+                    uniform token info:id = "RealityKit.VFXEmitter"
+
+                    def RealityKitStruct "currentState"
+                    {
+                        token birthDirection = "Constant"
+                        token birthLocation = "Surface"
+                        int64 burstCount = 100
+                        float3 emissionDirection = (0, 1, 0)
+                        double emissionDuration = 0.05
+                        double emissionDurationVariation = 0
+                        token emitterShape = "Cylinder"
+                        double idleDuration = 3
+                        double idleDurationVariation = 0
+                        bool isEmitting = 0
+                        bool isLocal = 0
+                        bool isSpawningEnabled = 0
+                        bool loops = 0
+                        float particleSpeed = 0.5
+                        float particleSpeedVariation = 0.1
+                        float3 shapeSize = (0.05, 0.01, 0.05)
+                        bool spawnInheritParentColor = 0
+                        token spawnOccasion = "OnBirth"
+                        float spawnSpreadFactor = 0
+                        float spawnSpreadFactorVariation = 0
+                        float spawnVelocityFactor = 1
+                        double warmupDuration = 0
+
+                        def RealityKitStruct "mainEmitter"
+                        {
+                            float3 acceleration = (0, 0, 0)
+                            token animationRepeatMode = "PlayOnce"
+                            token billboardMode = "Free"
+                            float birthRate = 2000
+                            float birthRateVariation = 0
+                            token blendMode = "Alpha"
+                            float colorEvolutionPower = 1
+                            int64 columnCount = 4
+                            float dampingFactor = 2
+                            float4 endColorA = (0.0013309671, 0.03458923, 1, 1)
+                            float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                            float frameRate = 0
+                            float frameRateVariation = 0
+                            int64 initialFrame = 2
+                            int64 initialFrameVariation = 6
+                            bool isAnimated = 1
+                            bool isLightingEnabled = 0
+                            float noiseAnimationSpeed = 0
+                            float noiseScale = 1
+                            float noiseStrength = 0.1
+                            token opacityOverLife = "LinearFadeOut"
+                            float particleAngle = 0
+                            float particleAngleVariation = 0
+                            float particleAngularVelocity = 0
+                            float particleAngularVelocityVariation = 1
+                            asset particleImage = @ParticleEmitterPresetTextures/dustsheet.exr@
+                            double particleLifeSpan = 2
+                            double particleLifeSpanVariation = 1
+                            float particleMass = 1
+                            float particleMassVariation = 0.8
+                            float particleSize = 0.01
+                            float particleSizeVariation = 0
+                            float3 radialGravityCenter = (0, -0.1, 0)
+                            float radialGravityStrength = -0.1
+                            int64 rowCount = 4
+                            float sizeMultiplierAtEndOfLifespan = 8
+                            float sizeMultiplierAtEndOfLifespanPower = 0.2
+                            token sortOrder = "DecreasingDepth"
+                            float spreadingAngle = 0
+                            float4 startColorA = (0.28882605, 0.27979144, 0, 1)
+                            float4 startColorB = (0.29430184, 0.08434998, 0, 1)
+                            float stretchFactor = 0
+                            bool useEndColor = 0
+                            bool useEndColorRange = 0
+                            bool useStartColorRange = 1
+                            float3 vortexDirection = (0, 1, 0)
+                            float vortexStrength = 0
+                        }
+
+                        def RealityKitStruct "spawnedEmitter"
+                        {
+                        }
+                    }
+                }
+            }
+        }
+
+        over "Chimney_1"
+        {
+            reorder nameChildren = ["Cylinder_002", "RCP_BehaviorsContainer", "OnAddedToScene", "Smokestack2"]
+            def RealityKitComponent "RCP_BehaviorsContainer"
+            {
+                rel behaviors = </Root/Factory/Chimney_1/OnAddedToScene>
+                uniform token info:id = "RCP.BehaviorsContainer"
+            }
+
+            def Preliminary_Behavior "OnAddedToScene"
+            {
+                rel actions = </Root/Factory/Chimney_1/OnAddedToScene/Action>
+                uniform bool exclusive
+                rel triggers = </Root/Factory/Chimney_1/OnAddedToScene/Trigger>
+
+                def Preliminary_Trigger "Trigger"
+                {
+                    rel affectedObjects = </Root/Factory/Chimney_1>
+                    token info:id = "SceneTransition"
+                }
+
+                def Preliminary_Action "Action"
+                {
+                    rel affectedObjects = None
+                    rel animationLibraryKeyOverrideKey = </Root/Factory/Chimney_1/OnAddedToScene/Trigger>
+                    token info:id = "PlayTimeline"
+                    int loops = 0
+                    int performCount = 1
+                    token type = "serial"
+                }
+            }
+
+            def Cylinder "Smokestack2" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/Factory/_materials/Brick_Mat> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double radius = 0.1
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+                quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
+                float3 xformOp:scale = (1.9999996, 0.009999997, 1.9999996)
+                float3 xformOp:translate = (0, -3.4671495e-14, 1.75)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </Root/Factory/Chimney_1/Smokestack2/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+
+                def RealityKitComponent "VFXEmitter"
+                {
+                    uniform token info:id = "RealityKit.VFXEmitter"
+
+                    def RealityKitStruct "currentState"
+                    {
+                        token birthDirection = "Constant"
+                        token birthLocation = "Surface"
+                        int64 burstCount = 100
+                        float3 emissionDirection = (0, 1, 0)
+                        double emissionDuration = 0.05
+                        double emissionDurationVariation = 0
+                        token emitterShape = "Cylinder"
+                        double idleDuration = 3
+                        double idleDurationVariation = 0
+                        bool isEmitting = 0
+                        bool isLocal = 0
+                        bool isSpawningEnabled = 0
+                        bool loops = 0
+                        float particleSpeed = 0.5
+                        float particleSpeedVariation = 0.1
+                        float3 shapeSize = (0.05, 0.01, 0.05)
+                        bool spawnInheritParentColor = 0
+                        token spawnOccasion = "OnBirth"
+                        float spawnSpreadFactor = 0
+                        float spawnSpreadFactorVariation = 0
+                        float spawnVelocityFactor = 1
+                        double warmupDuration = 0
+
+                        def RealityKitStruct "mainEmitter"
+                        {
+                            float3 acceleration = (0, 0, 0)
+                            token animationRepeatMode = "PlayOnce"
+                            token billboardMode = "Free"
+                            float birthRate = 2000
+                            float birthRateVariation = 0
+                            token blendMode = "Alpha"
+                            float colorEvolutionPower = 1
+                            int64 columnCount = 4
+                            float dampingFactor = 2
+                            float4 endColorA = (0.0013309671, 0.03458923, 1, 1)
+                            float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                            float frameRate = 0
+                            float frameRateVariation = 0
+                            int64 initialFrame = 2
+                            int64 initialFrameVariation = 6
+                            bool isAnimated = 1
+                            bool isLightingEnabled = 0
+                            float noiseAnimationSpeed = 0
+                            float noiseScale = 1
+                            float noiseStrength = 0.1
+                            token opacityOverLife = "LinearFadeOut"
+                            float particleAngle = 0
+                            float particleAngleVariation = 0
+                            float particleAngularVelocity = 0
+                            float particleAngularVelocityVariation = 1
+                            asset particleImage = @ParticleEmitterPresetTextures/dustsheet.exr@
+                            double particleLifeSpan = 2
+                            double particleLifeSpanVariation = 1
+                            float particleMass = 1
+                            float particleMassVariation = 0.8
+                            float particleSize = 0.01
+                            float particleSizeVariation = 0
+                            float3 radialGravityCenter = (0, -0.1, 0)
+                            float radialGravityStrength = -0.1
+                            int64 rowCount = 4
+                            float sizeMultiplierAtEndOfLifespan = 8
+                            float sizeMultiplierAtEndOfLifespanPower = 0.2
+                            token sortOrder = "DecreasingDepth"
+                            float spreadingAngle = 0
+                            float4 startColorA = (0.28882605, 0.27979144, 0, 1)
+                            float4 startColorB = (0.29430184, 0.08434998, 0, 1)
+                            float stretchFactor = 0
+                            bool useEndColor = 0
+                            bool useEndColorRange = 0
+                            bool useStartColorRange = 1
+                            float3 vortexDirection = (0, 1, 0)
+                            float vortexStrength = 0
+                        }
+
+                        def RealityKitStruct "spawnedEmitter"
+                        {
+                        }
+                    }
+                }
+            }
+        }
+
+        over "Chimney_2"
+        {
+            reorder nameChildren = ["Cylinder_003", "Smokestack3"]
+            def Cylinder "Smokestack3" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                uniform token axis = "Y"
+                double height = 0.2
+                rel material:binding = </Root/Factory/_materials/Brick_Mat> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double radius = 0.1
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+                quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
+                float3 xformOp:scale = (1.9999995, 0.009999996, 1.9999995)
+                float3 xformOp:translate = (0, -3.4671495e-14, 1.75)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </Root/Factory/Chimney_2/Smokestack3/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+
+                def RealityKitComponent "VFXEmitter"
+                {
+                    uniform token info:id = "RealityKit.VFXEmitter"
+
+                    def RealityKitStruct "currentState"
+                    {
+                        token birthDirection = "Constant"
+                        token birthLocation = "Surface"
+                        int64 burstCount = 100
+                        float3 emissionDirection = (0, 1, 0)
+                        double emissionDuration = 0.05
+                        double emissionDurationVariation = 0
+                        token emitterShape = "Cylinder"
+                        double idleDuration = 3
+                        double idleDurationVariation = 0
+                        bool isEmitting = 0
+                        bool isLocal = 0
+                        bool isSpawningEnabled = 0
+                        bool loops = 0
+                        float particleSpeed = 0.5
+                        float particleSpeedVariation = 0.1
+                        float3 shapeSize = (0.05, 0.01, 0.05)
+                        bool spawnInheritParentColor = 0
+                        token spawnOccasion = "OnBirth"
+                        float spawnSpreadFactor = 0
+                        float spawnSpreadFactorVariation = 0
+                        float spawnVelocityFactor = 1
+                        double warmupDuration = 0
+
+                        def RealityKitStruct "mainEmitter"
+                        {
+                            float3 acceleration = (0, 0, 0)
+                            token animationRepeatMode = "PlayOnce"
+                            token billboardMode = "Free"
+                            float birthRate = 2000
+                            float birthRateVariation = 0
+                            token blendMode = "Alpha"
+                            float colorEvolutionPower = 1
+                            int64 columnCount = 4
+                            float dampingFactor = 2
+                            float4 endColorA = (0.0013309671, 0.03458923, 1, 1)
+                            float4 endColorB = (0.11386989, 0.0064959256, 0.10626237, 1)
+                            float frameRate = 0
+                            float frameRateVariation = 0
+                            int64 initialFrame = 2
+                            int64 initialFrameVariation = 6
+                            bool isAnimated = 1
+                            bool isLightingEnabled = 0
+                            float noiseAnimationSpeed = 0
+                            float noiseScale = 1
+                            float noiseStrength = 0.1
+                            token opacityOverLife = "LinearFadeOut"
+                            float particleAngle = 0
+                            float particleAngleVariation = 0
+                            float particleAngularVelocity = 0
+                            float particleAngularVelocityVariation = 1
+                            asset particleImage = @ParticleEmitterPresetTextures/dustsheet.exr@
+                            double particleLifeSpan = 2
+                            double particleLifeSpanVariation = 1
+                            float particleMass = 1
+                            float particleMassVariation = 0.8
+                            float particleSize = 0.01
+                            float particleSizeVariation = 0
+                            float3 radialGravityCenter = (0, -0.1, 0)
+                            float radialGravityStrength = -0.1
+                            int64 rowCount = 4
+                            float sizeMultiplierAtEndOfLifespan = 8
+                            float sizeMultiplierAtEndOfLifespanPower = 0.2
+                            token sortOrder = "DecreasingDepth"
+                            float spreadingAngle = 0
+                            float4 startColorA = (0.28882605, 0.27979144, 0, 1)
+                            float4 startColorB = (0.29430184, 0.08434998, 0, 1)
+                            float stretchFactor = 0
+                            bool useEndColor = 0
+                            bool useEndColorRange = 0
+                            bool useStartColorRange = 1
+                            float3 vortexDirection = (0, 1, 0)
+                            float vortexStrength = 0
+                        }
+
+                        def RealityKitStruct "spawnedEmitter"
+                        {
+                        }
+                    }
+                }
+            }
+        }
+
+        def RealityKitComponent "RCP_BehaviorsContainer"
+        {
+            rel behaviors = [
+                </Root/Factory/OnAddedToScene>,
+                </Root/Factory/OnAddedToScene2>,
+            ]
+            uniform token info:id = "RCP.BehaviorsContainer"
+        }
+
+        def Preliminary_Behavior "OnAddedToScene"
+        {
+            rel actions = </Root/Factory/OnAddedToScene/Action>
+            uniform bool exclusive
+            rel triggers = </Root/Factory/OnAddedToScene/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/Factory>
+                token info:id = "SceneTransition"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = </Root>
+                rel animationLibraryKey = </Root/ChimneyMoveLoop>
+                rel animationLibraryKeyOverrideKey = </Root/Factory/OnAddedToScene/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
+
+        def RealityKitComponent "AnimationLibrary"
+        {
+            uniform token info:id = "RealityKit.AnimationLibrary"
+        }
+
+        over "env_light" (
+            active = false
+        )
+        {
+        }
+
+        over "Light" (
+            active = false
+        )
+        {
+        }
+
+        def Preliminary_Behavior "OnAddedToScene2"
+        {
+            rel actions = </Root/Factory/OnAddedToScene2/Action>
+            uniform bool exclusive
+            rel triggers = </Root/Factory/OnAddedToScene2/Trigger>
+
+            def Preliminary_Trigger "Trigger"
+            {
+                rel affectedObjects = </Root/Factory>
+                token info:id = "SceneTransition"
+            }
+
+            def Preliminary_Action "Action"
+            {
+                rel affectedObjects = None
+                rel animationLibraryKey = None
+                rel animationLibraryKeyOverrideKey = </Root/Factory/OnAddedToScene2/Trigger>
+                token info:id = "PlayTimeline"
+                int loops = 0
+                int performCount = 1
+                token type = "serial"
+            }
+        }
+
+        def RealityKitComponent "Billboard"
+        {
+            float blendFactor = 0
+            uniform token info:id = "RealityKit.Billboard"
+        }
+    }
+
+    def RealityKitTimeline "ChimneyMove"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track4", "Track3"]
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["Transform_By", "Transform_By_1"]
+            def RealityKitAction "Transform_By_1"
+            {
+                string actionKind = "moveBy"
+                int blendLayer = 300
+                double duration = 0.5
+                uniform token info:id = "07A65DDD-DAFE-4C01-AB96-759B790D2842"
+                float3 position = (0, 0, 0.75)
+                float3 scale = (1, 1, 1)
+                double startTime = 0.5
+                rel target = </Root/Factory/Chimney_0>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Transform_By2"
+            {
+                string actionKind = "moveBy"
+                int blendLayer = 300
+                double duration = 0.5
+                uniform token info:id = "A7FFF73E-116C-4840-8DE3-4D1CE59B282F"
+                float3 position = (0, 0, -0.75)
+                double startTime = 1
+                rel target = </Root/Factory/Chimney_1>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Transform_By_12"
+            {
+                string actionKind = "moveBy"
+                int blendLayer = 300
+                double duration = 0.5
+                uniform token info:id = "A7FFF73E-116C-4840-8DE3-4D1CE59B282F"
+                float3 position = (0, 0, 0.75)
+                double startTime = 1.5
+                rel target = </Root/Factory/Chimney_1>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Transform_By3"
+            {
+                string actionKind = "moveBy"
+                int blendLayer = 300
+                double duration = 0.5
+                uniform token info:id = "8AE4163C-BE71-4870-8DF4-884F3FA863B4"
+                float3 position = (0, 0, -0.75)
+                double startTime = 2
+                rel target = </Root/Factory/Chimney_2>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Transform_By_13"
+            {
+                string actionKind = "moveBy"
+                int blendLayer = 300
+                double duration = 0.5
+                uniform token info:id = "8AE4163C-BE71-4870-8DF4-884F3FA863B4"
+                float3 position = (0, 0, 0.75)
+                double startTime = 2.5
+                rel target = </Root/Factory/Chimney_2>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track4"
+        {
+            def RealityKitAction "Notification"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "53F4DD81-C9C5-4794-B1C9-A036F27450EE"
+                string notificationName = "Smoke1"
+                double startTime = 0.10774165617128464
+                rel target = </Root/Factory/Chimney_0/Smokestack1>
+            }
+
+            def RealityKitAction "Notification2"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "BE4FEF8D-1A38-4148-961C-7D3150C66A09"
+                string notificationName = "Smoke2"
+                double startTime = 1
+                rel target = </Root/Factory/Chimney_1/Smokestack2>
+            }
+
+            def RealityKitAction "Notification3"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "87DD9D1F-799C-4960-93E6-64B90586EC87"
+                string notificationName = "Smoke3"
+                double startTime = 2
+                rel target = </Root/Factory/Chimney_2/Smokestack3>
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Transform_By"
+            {
+                string actionKind = "moveBy"
+                int blendLayer = 300
+                double duration = 0.5
+                uniform token info:id = "07A65DDD-DAFE-4C01-AB96-759B790D2842"
+                float3 position = (0, 0, -0.75)
+                float3 scale = (1, 1, 1)
+                double startTime = 0.1
+                rel target = </Root/Factory/Chimney_0>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+    }
+
+    def RealityKitTimeline "ChimneyMoveLoop"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 3
+                uniform token info:id = "C0A4A9D3-AE90-47D6-B424-11E28146A1E5"
+                double loopCount = 0
+                double startTime = 0.010251792478354978
+                rel timeline = </Root/ChimneyMove>
+            }
+        }
+    }
+
+    def RealityKitTimeline "Billboard"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Billboard"
+            {
+                string actionKind = "lookAt"
+                double duration = 1.0119111178321427
+                uniform token info:id = "4580A8B2-DC3E-4B4B-85C3-28491D795F5A"
+                double startTime = 0
+                rel target = </Root/Factory>
+
+                def RealityKitStruct "transitionIn"
+                {
+                    def RealityKitStruct "timingFunction"
+                    {
+                    }
+                }
+
+                def RealityKitStruct "transitionOut"
+                {
+                    double duration = 20
+
+                    def RealityKitStruct "timingFunction"
+                    {
+                        token type = "easeOut"
+                    }
+                }
+            }
+        }
+    }
+
+    def RealityKitTimeline "BillboardLoop"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 1.0119111178321427
+                uniform token info:id = "342B444A-9DE7-48EC-99E1-F988DACBC4FD"
+                double loopCount = 0
+                double startTime = 0.014822635135135136
+                rel timeline = </Root/Billboard>
+            }
+        }
+    }
+}
+
