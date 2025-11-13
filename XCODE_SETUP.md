@@ -4,7 +4,7 @@ This guide will help you configure the EnergyAtlas project in Xcode after the re
 
 ## Current Status
 
-✅ Bundle identifiers updated to `com.skyporch.EnergyAtlas`  
+✅ Bundle identifiers configured  
 ✅ All Swift files renamed and updated  
 ✅ Project structure organized  
 
@@ -26,7 +26,7 @@ open EnergyAtlas.xcodeproj
 3. Go to the **General** tab
 4. Verify:
    - **Display Name**: Energy Atlas
-   - **Bundle Identifier**: `com.skyporch.EnergyAtlas`
+   - **Bundle Identifier**: Update to your organization (e.g., `com.yourorg.EnergyAtlas`)
    - **Version**: 1.0.0
    - **Build**: 1
 
@@ -34,10 +34,10 @@ open EnergyAtlas.xcodeproj
 
 If you want to use your own organization identifier:
 
-1. Change `com.skyporch.EnergyAtlas` to `com.yourorg.EnergyAtlas`
+1. Change the bundle ID to `com.yourorg.EnergyAtlas` (replace `yourorg` with your organization)
 2. Update in both:
    - Main app target
-   - Test target
+   - Test target (will be `com.yourorg.EnergyAtlasTests`)
 
 ### 4. Configure Signing
 

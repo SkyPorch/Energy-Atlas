@@ -105,7 +105,7 @@ CSV files should follow this structure:
 
 ```bash
 # Clone your fork
-git clone https://github.com/yourusername/EnergyAtlas.git
+git clone https://github.com/SkyPorch/Energy-Atlas.git
 cd EnergyAtlas
 
 # Open in Xcode

@@ -32,7 +32,7 @@ Energy Atlas transforms complex global energy data into an intuitive, spatial co
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/EnergyAtlas.git
+git clone https://github.com/SkyPorch/Energy-Atlas.git
 cd EnergyAtlas
 ```
 
