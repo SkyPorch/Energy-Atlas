@@ -1,6 +1,6 @@
 # Energy Atlas
 
-An immersive visionOS application for visualizing and exploring global energy consumption data in 3D space.
+An immersive visionOS application for visualizing and exploring global energy consumption data in 3D space. Available on the App Store [here](https://apps.apple.com/us/app/energy-atlas/id6754099363).
 
 ![visionOS](https://img.shields.io/badge/visionOS-2.0+-blue.svg)
 ![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)
